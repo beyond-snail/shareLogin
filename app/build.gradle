@@ -13,20 +13,28 @@ MobSDK {
                 callbackUri "http://www.sharesdk.cn"
                 shareByAppClient true
             }
-            TencentWeibo {
-                appKey "801307650"
-                appSecret "ae36f4ee3946e1cbb98d6965b0b2ff5c"
-                callbackUri "http://www.sharesdk.cn"
-            }
             Wechat {
+                id 4
+                sortId 4
                 appId "wx4868b35061f87885"
                 appSecret "64020361b8ec4c99936c0e3999a9f249"
-                userName "gh_afb25ac019c9"
-                path "pages/index/index.html?id=1"
-                withShareTicket true
-                miniprogramType 2
+                userName "gh_b0c6a9ca668a"
+                path "pages/index/index?id=mob"
+                withShareTicket  true
+                miniprogramType  2
                 bypassApproval false
+                enable true
             }
+            WechatMoments {
+                id 5
+                sortId 5
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+                bypassApproval false
+                enable true
+            }
+
+
             QQ {
                 appId "100371282"
                 appKey "aed9b0303e3ed1e27bae87c33761161d"

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -16,6 +17,7 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.PlatformDb;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
@@ -71,10 +73,12 @@ public class MainActivity extends AppCompatActivity implements PlatformActionLis
         oks.setText("我是分享文本");
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
         oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+//        oks.setImageUrl(share_img);
         // url在微信、微博，Facebook等平台中使用
         oks.setUrl("http://sharesdk.cn");
         // comment是我对这条分享的评论，仅在人人网使用
         oks.setComment("我是测试评论文本");
+
         // 启动分享GUI
         oks.show(this);
     }
@@ -148,6 +152,8 @@ public class MainActivity extends AppCompatActivity implements PlatformActionLis
                     gender = "2";
                 }
 
+                Toast.makeText(this, "微信："+name + "/"+ gender, Toast.LENGTH_SHORT).show();
+
             } else if (platform.getName().equals(SinaWeibo.NAME)) {
                 // 微博登录
 
@@ -156,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements PlatformActionLis
                 name = hashMap.get("nickname").toString(); // 名字
                 gender = hashMap.get("gender").toString(); // 年龄
                 headImageUrl = hashMap.get("figureurl_qq_2").toString(); // 头像figureurl_qq_2 中等图，figureurl_qq_1缩略图
+                Toast.makeText(this, "新浪： "+name + "/"+ gender, Toast.LENGTH_SHORT).show();
 
             } else if (platform.getName().equals(QQ.NAME)) {
                 // QQ登录
@@ -165,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements PlatformActionLis
                 name = hashMap.get("nickname").toString(); // 名字
                 gender = hashMap.get("gender").toString(); // 年龄
                 headImageUrl = hashMap.get("figureurl_qq_2").toString(); // 头像figureurl_qq_2 中等图，figureurl_qq_1缩略图
+                Toast.makeText(this, "QQ："+name + "/"+ gender, Toast.LENGTH_SHORT).show();
 
             }
         }
