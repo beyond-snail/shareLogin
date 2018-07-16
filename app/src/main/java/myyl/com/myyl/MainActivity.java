@@ -17,11 +17,11 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.PlatformDb;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
 import myyl.com.myyl.utils.ShareUtils;
+import myyl.com.myyl.utils.dialog.ShareDiaog;
 
 public class MainActivity extends AppCompatActivity implements PlatformActionListener {
 

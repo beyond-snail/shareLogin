@@ -12,6 +12,7 @@ public class MyApplication extends Application {
 
     public static final String TAG = "MyApplication";
 
+    private static MyApplication mInstance = null;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -30,6 +31,10 @@ public class MyApplication extends Application {
             builder.detectFileUriExposure();
         }
 
+    }
+
+    public static MyApplication getmInstance() {
+        return mInstance;
     }
 
 }

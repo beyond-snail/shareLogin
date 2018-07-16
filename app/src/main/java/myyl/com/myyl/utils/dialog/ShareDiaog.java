@@ -1,4 +1,4 @@
-package myyl.com.myyl;
+package myyl.com.myyl.utils.dialog;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import myyl.com.myyl.R;
 
 public class ShareDiaog implements View.OnClickListener {
     private Context context;
