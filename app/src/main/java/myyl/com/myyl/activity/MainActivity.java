@@ -1,10 +1,13 @@
 package myyl.com.myyl.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.stx.xhb.xbanner.XBanner;
 
 import java.util.ArrayList;
@@ -14,13 +17,28 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import myyl.com.myyl.R;
 import myyl.com.myyl.activity.base.TabBasicActivity;
-import myyl.com.myyl.model.AdvertiseEntity;
+import myyl.com.myyl.adapter.HorizontalListViewAdapter;
+import myyl.com.myyl.adapter.MyMenuAdapter;
+import myyl.com.myyl.enums.EnumConsts;
+import myyl.com.myyl.model.Menu;
 import myyl.com.myyl.utils.MyActivityManager;
+import myyl.com.myyl.utils.views.MyGridView;
+import myyl.com.myyl.utils.views.MyHorizontalListView;
 
 public class MainActivity extends TabBasicActivity implements View.OnClickListener {
     private final String TAG = "MainActivity";
     @BindView(R.id.xbanner)
     XBanner xbanner;
+    @BindView(R.id.id_gridview)
+    MyGridView idGridview;
+    @BindView(R.id.pullToRefreshScrollView)
+    PullToRefreshScrollView pullToRefreshScrollView;
+    @BindView(R.id.horizontal_lv)
+    MyHorizontalListView horizontalLv;
+
+    private List<Menu> list = new ArrayList<Menu>();
+    private MyMenuAdapter adapter;
+    private HorizontalListViewAdapter mHorizontalListViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +47,15 @@ public class MainActivity extends TabBasicActivity implements View.OnClickListen
         setContentView(R.layout.fragment_homepage);
         ButterKnife.bind(this);
         MyActivityManager.getInstance().addActivity(this);
-        initView();
         initBanner();
+        initMenu();
+        initService();
 
+    }
 
+    private void initService() {
+        mHorizontalListViewAdapter = new HorizontalListViewAdapter(MainActivity.this);
+        horizontalLv.setAdapter(mHorizontalListViewAdapter);
     }
 
     private void initBanner() {
@@ -53,23 +76,52 @@ public class MainActivity extends TabBasicActivity implements View.OnClickListen
 
                 //1、此处使用的Glide加载图片，可自行替换自己项目中的图片加载框架
                 //2、返回的图片路径为Object类型，你只需要强转成你传输的类型就行，切记不要胡乱强转！
-                Glide.with(MainActivity.this).load((String)model).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
+                Glide.with(MainActivity.this).load((String) model).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
             }
         });
 
     }
 
 
-    private void initView() {
-//        showView(R.id.titleback_btn_back, false);
-//        setTvText(R.id.tv_title, "首页");
+    private void initMenu() {
+        for (int i = 0; i < EnumConsts.MenuType.values().length; i++) {
+            Menu menu = new Menu();
+            menu.setBg(EnumConsts.MenuType.values()[i].getBg());
+            menu.setName(EnumConsts.MenuType.values()[i].getName());
+            list.add(menu);
+        }
+        adapter = new MyMenuAdapter(mContext, list);
+        idGridview.setAdapter(adapter);
 
-        //获取控件
-        xbanner = (XBanner) findViewById(R.id.xbanner);
+        //类目
+        idGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.e(TAG, "onItemClick " + position);
+                // 下拉刷新占据一个位置
+                int index = EnumConsts.MenuType.getCodeByName(list.get(position).getName());
+                switch (index) {
+                    case 1:
+//                        startActivity(new Intent(mContext, ActivityBankCardList.class));
+                        break;
+                    case 2:
+                        break;
+                    case 3:
 
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
 
+                }
+            }
+        });
     }
+
 
     @Override
     protected void onResume() {
