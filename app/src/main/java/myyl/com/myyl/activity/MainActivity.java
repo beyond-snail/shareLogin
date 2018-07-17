@@ -1,10 +1,12 @@
 package myyl.com.myyl.activity;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -18,13 +20,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import myyl.com.myyl.R;
 import myyl.com.myyl.activity.base.TabBasicActivity;
-import myyl.com.myyl.adapter.HorizontalListViewAdapter;
 import myyl.com.myyl.adapter.MyMenuAdapter;
 import myyl.com.myyl.enums.EnumConsts;
 import myyl.com.myyl.model.HomePageHdata;
 import myyl.com.myyl.model.Menu;
 import myyl.com.myyl.utils.MyActivityManager;
 import myyl.com.myyl.utils.views.MyGridView;
+import myyl.com.myyl.utils.views.MyListView;
 import myyl.com.myyl.utils.views.ZQImageViewRoundOval;
 import myyl.com.myyl.utils.views.lrecycleviews.adapter.CommonRecyclerAdapter;
 import myyl.com.myyl.utils.views.lrecycleviews.adapter.viewHolder.BaseRecycleViewsHolder;
@@ -33,7 +35,7 @@ import myyl.com.myyl.utils.views.lrecycleviews.constants.OnItemClick;
 import myyl.com.myyl.utils.views.lrecycleviews.constants.RecyclerViewStyle;
 import myyl.com.myyl.utils.views.lrecycleviews.utils.RecyclerViewUtils;
 
-public class MainActivity extends TabBasicActivity implements View.OnClickListener {
+public class MainActivity extends TabBasicActivity{
     private final String TAG = "MainActivity";
     @BindView(R.id.xbanner)
     XBanner xbanner;
@@ -42,13 +44,20 @@ public class MainActivity extends TabBasicActivity implements View.OnClickListen
     @BindView(R.id.pullToRefreshScrollView)
     PullToRefreshScrollView pullToRefreshScrollView;
     @BindView(R.id.recyclerview)
-    android.support.v7.widget.RecyclerView recyclerview;
-//    @BindView(R.id.horizontal_lv)
-//    MyHorizontalListView horizontalLv;
+    RecyclerView recyclerview;
+    @BindView(R.id.j_more)
+    TextView jMore;
+    @BindView(R.id.f_more)
+    TextView fMore;
+    @BindView(R.id.listview_f)
+    MyListView listviewF;
+    @BindView(R.id.z_more)
+    TextView zMore;
+    @BindView(R.id.listview_z)
+    MyListView listviewZ;
 
     private List<Menu> list = new ArrayList<Menu>();
     private MyMenuAdapter adapter;
-//    private HorizontalListViewAdapter mHorizontalListViewAdapter;
 
     private CommonRecyclerAdapter<HomePageHdata> rAdapter;
     private List<HomePageHdata> rList;
@@ -67,22 +76,20 @@ public class MainActivity extends TabBasicActivity implements View.OnClickListen
     }
 
     private void initService() {
-//        mHorizontalListViewAdapter = new HorizontalListViewAdapter(MainActivity.this);
-//        horizontalLv.setAdapter(mHorizontalListViewAdapter);
 
         setdata();
         //item的子view点击事件
         rAdapter.setOnClick(new OnClick() {
             @Override
             public void onClick(int position, View view, BaseRecycleViewsHolder holder) {
-                Toast.makeText(rAdapter.getContext(), "您点击了图片"+position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(rAdapter.getContext(), "您点击了图片" + position, Toast.LENGTH_SHORT).show();
             }
         });
 //        item点击事件
         rAdapter.setOnItemClick(new OnItemClick() {
             @Override
             public void onItemClick(int position, View view, BaseRecycleViewsHolder holder) {
-                Toast.makeText(rAdapter.getContext(), "您点击了item"+position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(rAdapter.getContext(), "您点击了item" + position, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -100,8 +107,8 @@ public class MainActivity extends TabBasicActivity implements View.OnClickListen
         rAdapter = new CommonRecyclerAdapter<HomePageHdata>(this, rList, R.layout.item_horizontal_gridview, RecyclerViewStyle.HorizontalGridView) {
             @Override
             protected void setData(BaseRecycleViewsHolder holder, int position, HomePageHdata item) {
-                holder.getTextView(R.id.id_index_gallery_item_text).setText(position+"");
-                ZQImageViewRoundOval imageView = (ZQImageViewRoundOval)holder.getImageView(R.id.id_index_gallery_item_image);
+                holder.getTextView(R.id.id_index_gallery_item_text).setText(position + "");
+                ZQImageViewRoundOval imageView = (ZQImageViewRoundOval) holder.getImageView(R.id.id_index_gallery_item_image);
                 imageView.setType(ZQImageViewRoundOval.TYPE_ROUND);
                 imageView.setRoundRadius(15);
                 Glide.with(rAdapter.getContext())
@@ -122,7 +129,7 @@ public class MainActivity extends TabBasicActivity implements View.OnClickListen
             }
         };
         recyclerview.setAdapter(rAdapter);
-        new RecyclerViewUtils<HomePageHdata>(recyclerview, rAdapter, 1).addItemDecoration(10,R.color.white);
+        new RecyclerViewUtils<HomePageHdata>(recyclerview, rAdapter, 1).addItemDecoration(10, R.color.white);
     }
 
     private void initBanner() {
@@ -208,4 +215,15 @@ public class MainActivity extends TabBasicActivity implements View.OnClickListen
     }
 
 
+    @butterknife.OnClick({R.id.j_more, R.id.f_more, R.id.z_more})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.j_more:
+                break;
+            case R.id.f_more:
+                break;
+            case R.id.z_more:
+                break;
+        }
+    }
 }

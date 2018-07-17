@@ -26,7 +26,8 @@ public class BaseActivity1 extends RootActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		StatusBarUtil.setColor(this, getResources().getColor(R.color.statusBar), 0);
+		StatusBarUtil.setColor(this, getResources().getColor(R.color.translucent_60), 112);
+//		StatusBarUtil.setTranslucent(this);
 	}
 
 

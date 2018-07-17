@@ -34,9 +34,9 @@ public class SegmentView extends LinearLayout {
 	@SuppressLint("Recycle")
 	public SegmentView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.attrs);
+		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.seg_attrs);
 		//String text = ta.getString(R.styleable.test_testAttr);
-		mNum = ta.getInteger(R.styleable.attrs_mNum, 0);
+		mNum = ta.getInteger(R.styleable.seg_attrs_mNum, 0);
 		init();
 	}
 	
