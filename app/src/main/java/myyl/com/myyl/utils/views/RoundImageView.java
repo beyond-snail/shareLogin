@@ -57,6 +57,7 @@ public class RoundImageView extends ImageView {
 		mBorderThickness = a.getDimensionPixelSize(R.styleable.roundedimageview_border_thickness, 0);
 		mBorderOutsideColor = a.getColor(R.styleable.roundedimageview_border_outside_color, defaultColor);
 		mBorderInsideColor = a.getColor(R.styleable.roundedimageview_border_inside_color, defaultColor);
+		a.recycle();
 	}
 
 	@Override
@@ -105,8 +106,8 @@ public class RoundImageView extends ImageView {
 
 	/**
 	 * 获取裁剪后的圆形图片
-	 * 
-	 * @param radius半径
+	 *
+	 * @param
 	 */
 	public Bitmap getCroppedRoundBitmap(Bitmap bmp, int radius) {
 		if (bmp == null)

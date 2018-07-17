@@ -20,10 +20,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import myyl.com.myyl.R;
 import myyl.com.myyl.activity.base.TabBasicActivity;
+import myyl.com.myyl.adapter.AdapterFm;
 import myyl.com.myyl.adapter.MyMenuAdapter;
 import myyl.com.myyl.enums.EnumConsts;
 import myyl.com.myyl.model.HomePageHdata;
 import myyl.com.myyl.model.Menu;
+import myyl.com.myyl.model.MyFmInfo;
 import myyl.com.myyl.utils.MyActivityManager;
 import myyl.com.myyl.utils.views.MyGridView;
 import myyl.com.myyl.utils.views.MyListView;
@@ -62,6 +64,9 @@ public class MainActivity extends TabBasicActivity{
     private CommonRecyclerAdapter<HomePageHdata> rAdapter;
     private List<HomePageHdata> rList;
 
+    private List<MyFmInfo> teamInfos = new ArrayList<MyFmInfo>();
+    private AdapterFm adapterFm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +77,21 @@ public class MainActivity extends TabBasicActivity{
         initBanner();
         initMenu();
         initService();
+        initFm();
 
+    }
+
+    private void initFm() {
+        for (int i = 0; i < 5; i++){
+            MyFmInfo fmInfo = new MyFmInfo();
+            fmInfo.setUserUrl("http://d.5857.com/xgs_150428/001.jpg");
+            fmInfo.setUserName("测试"+i);
+            fmInfo.setContent("等级是否就开始福建省了福建省了房间乱收费上课了的飞机上课的房间看电视放假了的书法家了第三方吉林省福建省的否打开司法局的书法家");
+            teamInfos.add(fmInfo);
+        }
+
+        adapterFm = new AdapterFm(this, teamInfos);
+        listviewF.setAdapter(adapterFm);
     }
 
     private void initService() {
