@@ -1,5 +1,6 @@
 package myyl.com.myyl.activity.base;
 
+import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.TabActivity;
@@ -8,8 +9,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -19,13 +18,17 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
+import me.weyye.hipermission.HiPermission;
+import me.weyye.hipermission.PermissionCallback;
+import me.weyye.hipermission.PermissionItem;
 import myyl.com.myyl.R;
 import myyl.com.myyl.enums.TypeBottomTab;
 import myyl.com.myyl.utils.MyActivityManager;
 import myyl.com.myyl.utils.StatusBarUtil;
+import myyl.com.myyl.utils.ToastUtils;
 
 @SuppressWarnings("deprecation")
 public class MainTabActivity extends TabActivity implements OnTabChangeListener
@@ -53,8 +56,47 @@ public class MainTabActivity extends TabActivity implements OnTabChangeListener
 		
 		initView();
 		setNotify();
+		requestPermissions();
 	}
 
+
+
+	private void requestPermissions() {
+
+
+		List<PermissionItem> permissionItems = new ArrayList<PermissionItem>();
+		permissionItems.add(new PermissionItem(Manifest.permission.WRITE_EXTERNAL_STORAGE, "存储", R.drawable.permission_ic_storage));
+		permissionItems.add(new PermissionItem(Manifest.permission.ACCESS_FINE_LOCATION, "定位", R.drawable.permission_ic_location));
+		permissionItems.add(new PermissionItem(Manifest.permission.READ_PHONE_STATE, "电话", R.drawable.permission_ic_phone));
+		permissionItems.add(new PermissionItem(Manifest.permission.CAMERA, "相机", R.drawable.permission_ic_camera));
+		permissionItems.add(new PermissionItem(Manifest.permission.RECORD_AUDIO, "录音", R.drawable.permission_ic_storage));
+//		permissionItems.add(new PermissionItem(Manifest.permission.WRITE_SETTINGS, "设置", R.drawable.permission_ic_storage));
+		HiPermission.create(this)
+				.permissions(permissionItems)
+				.checkMutiPermission(new PermissionCallback() {
+					@Override
+					public void onClose() {
+						Log.i(TAG, "onClose");
+						ToastUtils.showShort(MainTabActivity.this, "用户关闭权限申请");
+//						versionUpdate();
+					}
+
+					@Override
+					public void onFinish() {
+//						versionUpdate();
+					}
+
+					@Override
+					public void onDeny(String permisson, int position) {
+						Log.i(TAG, "onDeny");
+					}
+
+					@Override
+					public void onGuarantee(String permisson, int position) {
+						Log.i(TAG, "onGuarantee");
+					}
+				});
+	}
 
 	private void setNotify(){
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

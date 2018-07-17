@@ -41,16 +41,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.bumptech.glide.Glide;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
 import myyl.com.myyl.R;
 import myyl.com.myyl.model.MyFmInfo;
 import myyl.com.myyl.utils.views.RTextView;
-import myyl.com.myyl.utils.views.RoundImageView;
 
 
 /**********************************************************
@@ -92,7 +90,7 @@ public class AdapterFm extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = mInflater.inflate(R.layout.item_fm, parent, false);
-            holder.iv_img = (RoundImageView)convertView.findViewById(R.id.iv_img);
+            holder.iv_img = (RoundedImageView)convertView.findViewById(R.id.iv_img);
             holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
             holder.iv_type = (ImageView) convertView.findViewById(R.id.iv_type);
             holder.tv_content = (TextView) convertView.findViewById(R.id.tv_content);
@@ -107,9 +105,9 @@ public class AdapterFm extends BaseAdapter {
         MyFmInfo vo = list.get(position);
 
         Glide.with(mContext)
-                .load(vo.getUserUrl())
+                .load(vo.getUserUrl()).asBitmap()
                 .placeholder(R.drawable.default_image).error(R.drawable.default_image)
-                .into(holder.iv_img);
+                .into((RoundedImageView)holder.iv_img);
 //        ImageLoader.getInstance().displayImage(vo.getUserUrl(), holder.iv_img);
 
         holder.tv_name.setText(vo.getUserName());
@@ -124,7 +122,7 @@ public class AdapterFm extends BaseAdapter {
     }
 
     private static final class ViewHolder {
-        RoundImageView iv_img;
+        RoundedImageView iv_img;
         TextView tv_name;
         ImageView iv_type;
         TextView tv_content;

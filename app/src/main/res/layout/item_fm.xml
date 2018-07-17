@@ -17,17 +17,16 @@
         android:orientation="horizontal">
 
         <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/iv_img"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:scaleType="fitXY"
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"
             android:layout_margin="@dimen/margin_normal"
-            app:riv_border_color="#333333"
-            app:riv_border_width="2dp"
             app:riv_mutate_background="true"
             app:riv_oval="true"
-            app:riv_tile_mode="repeat"/>
+            app:riv_tile_mode="clamp"/>
 
 
         <TextView
@@ -53,6 +52,8 @@
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:textColor="#333333"
         android:textSize="14sp"
         android:text=""/>
