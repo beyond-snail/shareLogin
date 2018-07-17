@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
@@ -20,10 +21,17 @@ import myyl.com.myyl.activity.base.TabBasicActivity;
 import myyl.com.myyl.adapter.HorizontalListViewAdapter;
 import myyl.com.myyl.adapter.MyMenuAdapter;
 import myyl.com.myyl.enums.EnumConsts;
+import myyl.com.myyl.model.HomePageHdata;
 import myyl.com.myyl.model.Menu;
 import myyl.com.myyl.utils.MyActivityManager;
 import myyl.com.myyl.utils.views.MyGridView;
-import myyl.com.myyl.utils.views.MyHorizontalListView;
+import myyl.com.myyl.utils.views.ZQImageViewRoundOval;
+import myyl.com.myyl.utils.views.lrecycleviews.adapter.CommonRecyclerAdapter;
+import myyl.com.myyl.utils.views.lrecycleviews.adapter.viewHolder.BaseRecycleViewsHolder;
+import myyl.com.myyl.utils.views.lrecycleviews.constants.OnClick;
+import myyl.com.myyl.utils.views.lrecycleviews.constants.OnItemClick;
+import myyl.com.myyl.utils.views.lrecycleviews.constants.RecyclerViewStyle;
+import myyl.com.myyl.utils.views.lrecycleviews.utils.RecyclerViewUtils;
 
 public class MainActivity extends TabBasicActivity implements View.OnClickListener {
     private final String TAG = "MainActivity";
@@ -33,12 +41,17 @@ public class MainActivity extends TabBasicActivity implements View.OnClickListen
     MyGridView idGridview;
     @BindView(R.id.pullToRefreshScrollView)
     PullToRefreshScrollView pullToRefreshScrollView;
-    @BindView(R.id.horizontal_lv)
-    MyHorizontalListView horizontalLv;
+    @BindView(R.id.recyclerview)
+    android.support.v7.widget.RecyclerView recyclerview;
+//    @BindView(R.id.horizontal_lv)
+//    MyHorizontalListView horizontalLv;
 
     private List<Menu> list = new ArrayList<Menu>();
     private MyMenuAdapter adapter;
-    private HorizontalListViewAdapter mHorizontalListViewAdapter;
+//    private HorizontalListViewAdapter mHorizontalListViewAdapter;
+
+    private CommonRecyclerAdapter<HomePageHdata> rAdapter;
+    private List<HomePageHdata> rList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +67,62 @@ public class MainActivity extends TabBasicActivity implements View.OnClickListen
     }
 
     private void initService() {
-        mHorizontalListViewAdapter = new HorizontalListViewAdapter(MainActivity.this);
-        horizontalLv.setAdapter(mHorizontalListViewAdapter);
+//        mHorizontalListViewAdapter = new HorizontalListViewAdapter(MainActivity.this);
+//        horizontalLv.setAdapter(mHorizontalListViewAdapter);
+
+        setdata();
+        //item的子view点击事件
+        rAdapter.setOnClick(new OnClick() {
+            @Override
+            public void onClick(int position, View view, BaseRecycleViewsHolder holder) {
+                Toast.makeText(rAdapter.getContext(), "您点击了图片"+position, Toast.LENGTH_SHORT).show();
+            }
+        });
+//        item点击事件
+        rAdapter.setOnItemClick(new OnItemClick() {
+            @Override
+            public void onItemClick(int position, View view, BaseRecycleViewsHolder holder) {
+                Toast.makeText(rAdapter.getContext(), "您点击了item"+position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+
+    private void setdata() {
+        rList = new ArrayList<>();
+        rList.add(new HomePageHdata("http://d.5857.com/xgs_150428/001.jpg"));
+        rList.add(new HomePageHdata("http://d.5857.com/xgs_150428/002.jpg"));
+        rList.add(new HomePageHdata("https://a-ssl.duitang.com/uploads/item/201502/27/20150227112432_jcwSt.jpeg"));
+        rList.add(new HomePageHdata("http://d.5857.com/xgs_150428/003.jpg"));
+        rList.add(new HomePageHdata("http://d.5857.com/xgs_150428/004.jpg"));
+        rAdapter = new CommonRecyclerAdapter<HomePageHdata>(this, rList, R.layout.item_horizontal_gridview, RecyclerViewStyle.HorizontalGridView) {
+            @Override
+            protected void setData(BaseRecycleViewsHolder holder, int position, HomePageHdata item) {
+                holder.getTextView(R.id.id_index_gallery_item_text).setText(position+"");
+                ZQImageViewRoundOval imageView = (ZQImageViewRoundOval)holder.getImageView(R.id.id_index_gallery_item_image);
+                imageView.setType(ZQImageViewRoundOval.TYPE_ROUND);
+                imageView.setRoundRadius(15);
+                Glide.with(rAdapter.getContext())
+                        .load(item.getImg())
+                        .into(imageView);
+                holder.setClickListener(R.id.id_index_gallery_item_image);
+                holder.setItemClickListener();
+            }
+
+            @Override
+            protected void setFootData(BaseRecycleViewsHolder holder, int position, int footposition) {
+
+            }
+
+            @Override
+            protected void setHeadData(BaseRecycleViewsHolder holder, int position) {
+
+            }
+        };
+        recyclerview.setAdapter(rAdapter);
+        new RecyclerViewUtils<HomePageHdata>(recyclerview, rAdapter, 1).addItemDecoration(10,R.color.white);
     }
 
     private void initBanner() {
