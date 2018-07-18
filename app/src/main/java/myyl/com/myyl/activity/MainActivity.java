@@ -1,6 +1,10 @@
 package myyl.com.myyl.activity;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -13,15 +17,27 @@ import com.bumptech.glide.Glide;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.stx.xhb.xbanner.XBanner;
 
+import net.lucode.hackware.magicindicator.MagicIndicator;
+import net.lucode.hackware.magicindicator.ViewPagerHelper;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import myyl.com.myyl.R;
-import myyl.com.myyl.activity.base.TabBasicActivity;
+import myyl.com.myyl.activity.base.BaseFragmentActivity;
 import myyl.com.myyl.adapter.AdapterFm;
 import myyl.com.myyl.adapter.AdapterZw;
+import myyl.com.myyl.adapter.FragmentAdapter;
 import myyl.com.myyl.adapter.MyMenuAdapter;
 import myyl.com.myyl.enums.EnumConsts;
 import myyl.com.myyl.model.HomePageHdata;
@@ -39,7 +55,7 @@ import myyl.com.myyl.utils.views.lrecycleviews.constants.OnItemClick;
 import myyl.com.myyl.utils.views.lrecycleviews.constants.RecyclerViewStyle;
 import myyl.com.myyl.utils.views.lrecycleviews.utils.RecyclerViewUtils;
 
-public class MainActivity extends TabBasicActivity{
+public class MainActivity extends BaseFragmentActivity {
     private final String TAG = "MainActivity";
     @BindView(R.id.xbanner)
     XBanner xbanner;
@@ -59,6 +75,10 @@ public class MainActivity extends TabBasicActivity{
     TextView zMore;
     @BindView(R.id.listview_z)
     MyListView listviewZ;
+    @BindView(R.id.magic_indicator)
+    MagicIndicator magicIndicator;
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
 
     private List<Menu> list = new ArrayList<Menu>();
     private MyMenuAdapter adapter;
@@ -74,6 +94,12 @@ public class MainActivity extends TabBasicActivity{
     private AdapterZw adapterZw;
 
 
+    private static final String[] CHANNELS = new String[]{"全部资讯", "治疗前沿", "药物前沿", "研究前沿", "小牛研究"};
+    private List<String> mDataList = Arrays.asList(CHANNELS);
+
+    private List<Fragment> mFragmentList = new ArrayList<Fragment>();
+    private FragmentAdapter mFragmentAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,13 +114,21 @@ public class MainActivity extends TabBasicActivity{
         initFm();
         initZw();
 
+        initMagicIndicator();
+        initFragments();
+
+
+
+
     }
 
+
+
     private void initZw() {
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++) {
             MyZwInfo zwInfo = new MyZwInfo();
             zwInfo.setUserUrl("http://d.5857.com/xgs_150428/001.jpg");
-            zwInfo.setUserName("测试"+i);
+            zwInfo.setUserName("测试" + i);
             zwInfo.setContent("等级是否就开始福建省了福建省了房间乱收费上课了的飞机上课的房间看电视放假了的书法家了第三方吉林省福建省的否打开司法局的书法家");
             zwInfo.setNum(12);
             zwInfo.setHours(11);
@@ -107,10 +141,10 @@ public class MainActivity extends TabBasicActivity{
     }
 
     private void initFm() {
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++) {
             MyFmInfo fmInfo = new MyFmInfo();
             fmInfo.setUserUrl("http://d.5857.com/xgs_150428/001.jpg");
-            fmInfo.setUserName("测试"+i);
+            fmInfo.setUserName("测试" + i);
             fmInfo.setContent("等级是否就开始福建省了福建省了房间乱收费上课了的飞机上课的房间看电视放假了的书法家了第三方吉林省福建省的否打开司法局的书法家");
             fmInfo.setNum(12);
             fmInfo.setSecond(122);
@@ -242,6 +276,63 @@ public class MainActivity extends TabBasicActivity{
             }
         });
     }
+
+
+
+
+    private void initMagicIndicator() {
+        MagicIndicator magicIndicator = (MagicIndicator) findViewById(R.id.magic_indicator);
+        magicIndicator.setBackgroundColor(Color.WHITE);
+        CommonNavigator commonNavigator = new CommonNavigator(this);
+        commonNavigator.setAdapter(new CommonNavigatorAdapter() {
+            @Override
+            public int getCount() {
+                return mDataList == null ? 0 : mDataList.size();
+            }
+
+            @Override
+            public IPagerTitleView getTitleView(Context context, final int index) {
+                SimplePagerTitleView simplePagerTitleView = new ColorTransitionPagerTitleView(context);
+                simplePagerTitleView.setText(mDataList.get(index));
+                simplePagerTitleView.setNormalColor(Color.parseColor("#333333"));
+                simplePagerTitleView.setSelectedColor(Color.parseColor("#1FBCD2"));
+                simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        viewPager.setCurrentItem(index);
+                    }
+                });
+                return simplePagerTitleView;
+            }
+
+            @Override
+            public IPagerIndicator getIndicator(Context context) {
+                LinePagerIndicator indicator = new LinePagerIndicator(context);
+                indicator.setColors(Color.parseColor("#1FBCD2"));
+                return indicator;
+            }
+        });
+        magicIndicator.setNavigator(commonNavigator);
+        ViewPagerHelper.bind(magicIndicator, viewPager);
+    }
+
+    private void initFragments() {
+
+        //将三个页面添加到容器里面
+        mFragmentList.add(new FragmentPage1());
+        mFragmentList.add(new FragmentPage2());
+        mFragmentList.add(new FragmentPage3());
+        mFragmentList.add(new FragmentPage4());
+        mFragmentList.add(new FragmentPage5());
+
+        //重写一个FragmentAdapter继承FragmentPagerAdapter，需要传FragmentManager和存放页面的容器过去
+        mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragmentList);
+        //ViewPager绑定监听器
+        viewPager.setAdapter(mFragmentAdapter);
+        //ViewPager设置默认当前的项
+        viewPager.setCurrentItem(0);
+    }
+
 
 
     @Override
