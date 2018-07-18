@@ -87,6 +87,9 @@ public class MainActivity extends TabBasicActivity{
             fmInfo.setUserUrl("http://d.5857.com/xgs_150428/001.jpg");
             fmInfo.setUserName("测试"+i);
             fmInfo.setContent("等级是否就开始福建省了福建省了房间乱收费上课了的飞机上课的房间看电视放假了的书法家了第三方吉林省福建省的否打开司法局的书法家");
+            fmInfo.setNum(12);
+            fmInfo.setSecond(122);
+            fmInfo.setAmount(1000);
             teamInfos.add(fmInfo);
         }
 

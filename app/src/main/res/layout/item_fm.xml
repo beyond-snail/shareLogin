@@ -62,20 +62,56 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:padding="10dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <ImageView
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_sound"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:src="@drawable/ic_launcher" />-->
+        <!--<myyl.com.myyl.utils.views.FlikerProgressBar-->
+            <!--android:id="@+id/iv_sound"-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:textSize="12sp"-->
+            <!--app:loadingColor="#4EB2FD"-->
+            <!--app:radius="20dp"-->
+            <!--/>-->
+        <LinearLayout
             android:id="@+id/iv_sound"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_vertical"
-            android:src="@drawable/ic_launcher" />
+            android:layout_gravity="center"
+            android:gravity="center|left"
+            android:background="@drawable/bg_common_corners">
+
+            <View
+                android:id="@+id/id_recorder_anim"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/v_anim3"
+                />
+            <TextView
+                android:id="@+id/tv_amount"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:text="￥10.00"/>
+
+        </LinearLayout>
         <TextView
             android:id="@+id/tv_second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text=""
             android:textSize="12sp"
             android:textColor="#666666"/>
@@ -89,10 +125,11 @@
             android:layout_height="wrap_content"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
             android:text=""
             android:textColor="#666666"
             android:textSize="12sp"
-            rtv:icon_src_normal="@drawable/ic_launcher"
+            rtv:icon_src_normal="@mipmap/ic_ej"
             rtv:icon_direction="left"
             rtv:icon_height="15dp"
             rtv:icon_width="15dp"/>
