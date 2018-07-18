@@ -44,6 +44,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.allen.library.SuperButton;
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -51,10 +52,10 @@ import java.util.List;
 
 import myyl.com.myyl.R;
 import myyl.com.myyl.model.MyFmInfo;
+import myyl.com.myyl.model.MyZwInfo;
 import myyl.com.myyl.utils.StringUtils;
 import myyl.com.myyl.utils.records.MediaManager;
 import myyl.com.myyl.utils.records.view.AudioRecorderButton;
-import myyl.com.myyl.utils.views.FlikerProgressBar;
 import myyl.com.myyl.utils.views.RTextView;
 
 
@@ -64,16 +65,14 @@ import myyl.com.myyl.utils.views.RTextView;
  **********************************************************/
 
 
-public class AdapterFm extends BaseAdapter {
+public class AdapterZw extends BaseAdapter {
 
     private Context mContext;
     private LayoutInflater mInflater;
-    private List<MyFmInfo> list;
+    private List<MyZwInfo> list;
 
-    private AudioRecorderButton mAudioRecorderButton;
-    private View mAnimView;
 
-    public AdapterFm(Context context, List<MyFmInfo> list) {
+    public AdapterZw(Context context, List<MyZwInfo> list) {
         this.mContext = context;
         mInflater = LayoutInflater.from(context);
         this.list = list;
@@ -99,21 +98,20 @@ public class AdapterFm extends BaseAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = mInflater.inflate(R.layout.item_fm, parent, false);
+            convertView = mInflater.inflate(R.layout.item_zw, parent, false);
             holder.iv_img = (RoundedImageView)convertView.findViewById(R.id.iv_img);
-            holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
-            holder.iv_type = (ImageView) convertView.findViewById(R.id.iv_type);
+            holder.tv_name = (RTextView) convertView.findViewById(R.id.tv_name);
+            holder.tv_p_name = (RTextView) convertView.findViewById(R.id.tv_p_name);
             holder.tv_content = (TextView) convertView.findViewById(R.id.tv_content);
-            holder.tv_second = (TextView) convertView.findViewById(R.id.tv_second);
-            holder.tv_amount = (TextView) convertView.findViewById(R.id.tv_amount);
-            holder.iv_sound = (LinearLayout) convertView.findViewById(R.id.iv_sound);
-            holder.tv_num = (RTextView) convertView.findViewById(R.id.tv_num);
+            holder.tv_qd = (SuperButton) convertView.findViewById(R.id.tv_qd);
+            holder.tv_hours = (TextView) convertView.findViewById(R.id.tv_hours);
+            holder.tv_num = (TextView) convertView.findViewById(R.id.tv_num);
             convertView.setTag(holder);
 
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        MyFmInfo vo = list.get(position);
+        MyZwInfo vo = list.get(position);
 
         Glide.with(mContext)
                 .load(vo.getUserUrl()).asBitmap()
@@ -122,34 +120,10 @@ public class AdapterFm extends BaseAdapter {
 
         holder.tv_name.setText(vo.getUserName());
         holder.tv_content.setText(vo.getContent());
-        holder.tv_num.setText(vo.getNum()+"");
-        holder.tv_second.setText(vo.getSecond()+"\"");
-        holder.tv_amount.setText("￥"+StringUtils.formatIntMoney(vo.getAmount()));
-//        holder.iv_type.setText(vo.getType());
-        holder.iv_sound.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //如果第一个动画正在运行， 停止第一个播放其他的
-                if (mAnimView != null) {
-                    mAnimView.setBackgroundResource(R.drawable.v_anim3);
-                    mAnimView = null;
-                }
-                //播放动画
-                mAnimView = v.findViewById(R.id.id_recorder_anim);
-                mAnimView.setBackgroundResource(R.drawable.play_anim);
-                AnimationDrawable animation = (AnimationDrawable) mAnimView.getBackground();
-                animation.start();
+        holder.tv_p_name.setText(vo.getpName());
+        holder.tv_hours.setText("还剩"+vo.getHours()+"小时");
+        holder.tv_num.setText(vo.getNum()+"人已抢答");
 
-
-                //播放音频  完成后改回原来的background
-                MediaManager.playSound("", new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        mAnimView.setBackgroundResource(R.drawable.v_anim3);
-                    }
-                });
-            }
-        });
 
 
         return convertView;
@@ -157,13 +131,12 @@ public class AdapterFm extends BaseAdapter {
 
     private static final class ViewHolder {
         RoundedImageView iv_img;
-        TextView tv_name;
-        ImageView iv_type;
+        RTextView tv_name;
         TextView tv_content;
-        LinearLayout iv_sound;
-        TextView tv_second;
-        TextView tv_amount;
-        RTextView tv_num;
+        RTextView tv_p_name;
+        SuperButton tv_qd;
+        TextView tv_hours;
+        TextView tv_num;
 
     }
 }

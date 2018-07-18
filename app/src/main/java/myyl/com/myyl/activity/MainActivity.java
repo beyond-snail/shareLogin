@@ -21,11 +21,13 @@ import butterknife.ButterKnife;
 import myyl.com.myyl.R;
 import myyl.com.myyl.activity.base.TabBasicActivity;
 import myyl.com.myyl.adapter.AdapterFm;
+import myyl.com.myyl.adapter.AdapterZw;
 import myyl.com.myyl.adapter.MyMenuAdapter;
 import myyl.com.myyl.enums.EnumConsts;
 import myyl.com.myyl.model.HomePageHdata;
 import myyl.com.myyl.model.Menu;
 import myyl.com.myyl.model.MyFmInfo;
+import myyl.com.myyl.model.MyZwInfo;
 import myyl.com.myyl.utils.MyActivityManager;
 import myyl.com.myyl.utils.views.MyGridView;
 import myyl.com.myyl.utils.views.MyListView;
@@ -67,6 +69,12 @@ public class MainActivity extends TabBasicActivity{
     private List<MyFmInfo> teamInfos = new ArrayList<MyFmInfo>();
     private AdapterFm adapterFm;
 
+
+    private List<MyZwInfo> zwInfos = new ArrayList<MyZwInfo>();
+    private AdapterZw adapterZw;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,11 +86,28 @@ public class MainActivity extends TabBasicActivity{
         initMenu();
         initService();
         initFm();
+        initZw();
 
     }
 
+    private void initZw() {
+        for (int i = 0; i < 3; i++){
+            MyZwInfo zwInfo = new MyZwInfo();
+            zwInfo.setUserUrl("http://d.5857.com/xgs_150428/001.jpg");
+            zwInfo.setUserName("测试"+i);
+            zwInfo.setContent("等级是否就开始福建省了福建省了房间乱收费上课了的飞机上课的房间看电视放假了的书法家了第三方吉林省福建省的否打开司法局的书法家");
+            zwInfo.setNum(12);
+            zwInfo.setHours(11);
+            zwInfo.setpName("PD1");
+            zwInfos.add(zwInfo);
+        }
+
+        adapterZw = new AdapterZw(this, zwInfos);
+        listviewZ.setAdapter(adapterZw);
+    }
+
     private void initFm() {
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 3; i++){
             MyFmInfo fmInfo = new MyFmInfo();
             fmInfo.setUserUrl("http://d.5857.com/xgs_150428/001.jpg");
             fmInfo.setUserName("测试"+i);
