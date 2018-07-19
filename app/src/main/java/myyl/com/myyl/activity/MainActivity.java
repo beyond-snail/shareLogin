@@ -1,6 +1,7 @@
 package myyl.com.myyl.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -157,6 +158,13 @@ public class MainActivity extends BaseFragmentActivity {
 
         adapterFm = new AdapterFm(this, teamInfos);
         listviewF.setAdapter(adapterFm);
+        listviewF.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //详情
+                startActivity(new Intent(mContext, ActivityFmDetail.class));
+            }
+        });
     }
 
     private void initService() {

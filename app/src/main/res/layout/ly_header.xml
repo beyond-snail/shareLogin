@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="@dimen/titleback_height"
     android:id="@+id/lv_heard"
-    android:background="@color/statusBar"
+    android:background="@color/white"
     android:orientation="horizontal" >
 
     <LinearLayout
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:singleLine="true"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="18sp" />
 
     <!-- 
@@ -67,7 +67,7 @@
         android:paddingRight="11dp"
         android:gravity="right"
         android:singleLine="true"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:visibility="gone" />
     
