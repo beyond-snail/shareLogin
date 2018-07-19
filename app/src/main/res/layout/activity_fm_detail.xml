@@ -8,6 +8,10 @@
     android:orientation="vertical">
 
     <include layout="@layout/ly_header" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f5f5f5" />
 
     <myyl.com.myyl.utils.views.MyScrollView
         android:layout_width="fill_parent"
@@ -59,6 +63,7 @@
                             android:id="@+id/tv_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="--"
@@ -86,7 +91,7 @@
                             android:gravity="center"
                             android:text="--"
                             android:textColor="@color/font_zw_gray"
-                            android:textSize="@dimen/text_size_normal" />
+                            android:textSize="@dimen/text_size_mdpi" />
                     </LinearLayout>
 
                     <TextView
@@ -191,7 +196,7 @@
                     android:padding="10dp"
                     android:text="综合评分"
                     android:textColor="#333333"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -259,7 +264,7 @@
                     android:gravity="center"
                     android:text="为您推荐"
                     android:textColor="#333333"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/tv_tj"
@@ -267,7 +272,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="10dp"
-                    android:gravity="center"
                     android:text="--"
                     android:textColor="@color/font_zw_gray"
                     android:textSize="14sp" />
@@ -298,6 +302,10 @@
                     android:textSize="18sp" />
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#f5f5f5" />
             <myyl.com.myyl.utils.views.MyListView
                 android:id="@+id/listview"
                 android:layout_width="match_parent"
