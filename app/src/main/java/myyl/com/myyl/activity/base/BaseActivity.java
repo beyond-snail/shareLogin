@@ -80,7 +80,7 @@ public abstract class BaseActivity extends Activity {
     }
 
     protected void setStatusBar() {
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.statusBar), 0);
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.translucent_60), 112);
     }
 
     /**

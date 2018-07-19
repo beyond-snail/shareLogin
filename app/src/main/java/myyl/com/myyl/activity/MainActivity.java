@@ -40,11 +40,11 @@ import myyl.com.myyl.adapter.AdapterZw;
 import myyl.com.myyl.adapter.FragmentAdapter;
 import myyl.com.myyl.adapter.MyMenuAdapter;
 import myyl.com.myyl.enums.EnumConsts;
-import myyl.com.myyl.fragment.FragmentPage1;
-import myyl.com.myyl.fragment.FragmentPage2;
-import myyl.com.myyl.fragment.FragmentPage3;
-import myyl.com.myyl.fragment.FragmentPage4;
-import myyl.com.myyl.fragment.FragmentPage5;
+import myyl.com.myyl.fragment.FragmentHomePage1;
+import myyl.com.myyl.fragment.FragmentHomePage2;
+import myyl.com.myyl.fragment.FragmentHomePage3;
+import myyl.com.myyl.fragment.FragmentHomePage4;
+import myyl.com.myyl.fragment.FragmentHomePage5;
 import myyl.com.myyl.model.HomePageHdata;
 import myyl.com.myyl.model.Menu;
 import myyl.com.myyl.model.MyFmInfo;
@@ -52,6 +52,7 @@ import myyl.com.myyl.model.MyZwInfo;
 import myyl.com.myyl.utils.MyActivityManager;
 import myyl.com.myyl.utils.views.MyGridView;
 import myyl.com.myyl.utils.views.MyListView;
+import myyl.com.myyl.utils.views.MyViewPager;
 import myyl.com.myyl.utils.views.ZQImageViewRoundOval;
 import myyl.com.myyl.utils.views.lrecycleviews.adapter.CommonRecyclerAdapter;
 import myyl.com.myyl.utils.views.lrecycleviews.adapter.viewHolder.BaseRecycleViewsHolder;
@@ -83,7 +84,8 @@ public class MainActivity extends BaseFragmentActivity {
     @BindView(R.id.magic_indicator)
     MagicIndicator magicIndicator;
     @BindView(R.id.view_pager)
-    ViewPager viewPager;
+    MyViewPager viewPager;
+
 
     private List<Menu> list = new ArrayList<Menu>();
     private MyMenuAdapter adapter;
@@ -123,10 +125,7 @@ public class MainActivity extends BaseFragmentActivity {
         initFragments();
 
 
-
-
     }
-
 
 
     private void initZw() {
@@ -159,6 +158,13 @@ public class MainActivity extends BaseFragmentActivity {
 
         adapterFm = new AdapterFm(this, teamInfos);
         listviewF.setAdapter(adapterFm);
+        listviewF.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //详情
+                startActivity(new Intent(mContext, ActivityFmDetail.class));
+            }
+        });
     }
 
     private void initService() {
@@ -283,12 +289,11 @@ public class MainActivity extends BaseFragmentActivity {
     }
 
 
-
-
     private void initMagicIndicator() {
         MagicIndicator magicIndicator = (MagicIndicator) findViewById(R.id.magic_indicator);
         magicIndicator.setBackgroundColor(Color.WHITE);
         CommonNavigator commonNavigator = new CommonNavigator(this);
+        commonNavigator.setAdjustMode(true);
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override
             public int getCount() {
@@ -299,6 +304,7 @@ public class MainActivity extends BaseFragmentActivity {
             public IPagerTitleView getTitleView(Context context, final int index) {
                 SimplePagerTitleView simplePagerTitleView = new ColorTransitionPagerTitleView(context);
                 simplePagerTitleView.setText(mDataList.get(index));
+                simplePagerTitleView.setTextSize(13);
                 simplePagerTitleView.setNormalColor(Color.parseColor("#333333"));
                 simplePagerTitleView.setSelectedColor(Color.parseColor("#1FBCD2"));
                 simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
@@ -324,11 +330,11 @@ public class MainActivity extends BaseFragmentActivity {
     private void initFragments() {
 
         //将三个页面添加到容器里面
-        mFragmentList.add(new FragmentPage1());
-        mFragmentList.add(new FragmentPage2());
-        mFragmentList.add(new FragmentPage3());
-        mFragmentList.add(new FragmentPage4());
-        mFragmentList.add(new FragmentPage5());
+        mFragmentList.add(new FragmentHomePage1());
+        mFragmentList.add(new FragmentHomePage2());
+        mFragmentList.add(new FragmentHomePage3());
+        mFragmentList.add(new FragmentHomePage4());
+        mFragmentList.add(new FragmentHomePage5());
 
         //重写一个FragmentAdapter继承FragmentPagerAdapter，需要传FragmentManager和存放页面的容器过去
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragmentList);
@@ -336,8 +342,8 @@ public class MainActivity extends BaseFragmentActivity {
         viewPager.setAdapter(mFragmentAdapter);
         //ViewPager设置默认当前的项
         viewPager.setCurrentItem(0);
+        viewPager.setOffscreenPageLimit(5);
     }
-
 
 
     @Override

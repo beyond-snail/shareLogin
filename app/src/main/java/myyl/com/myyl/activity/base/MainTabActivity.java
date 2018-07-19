@@ -51,52 +51,13 @@ public class MainTabActivity extends TabActivity implements OnTabChangeListener
 
 		setContentView(R.layout.basic_tab);
 		MyActivityManager.getInstance().addActivity(this);
-		StatusBarUtil.setColor(this, getResources().getColor(R.color.statusBar), 0);
+		StatusBarUtil.setColor(this, getResources().getColor(R.color.translucent_60), 112);
 
 		
 		initView();
 		setNotify();
-		requestPermissions();
 	}
 
-
-
-	private void requestPermissions() {
-
-
-		List<PermissionItem> permissionItems = new ArrayList<PermissionItem>();
-		permissionItems.add(new PermissionItem(Manifest.permission.WRITE_EXTERNAL_STORAGE, "存储", R.drawable.permission_ic_storage));
-		permissionItems.add(new PermissionItem(Manifest.permission.ACCESS_FINE_LOCATION, "定位", R.drawable.permission_ic_location));
-		permissionItems.add(new PermissionItem(Manifest.permission.READ_PHONE_STATE, "电话", R.drawable.permission_ic_phone));
-		permissionItems.add(new PermissionItem(Manifest.permission.CAMERA, "相机", R.drawable.permission_ic_camera));
-		permissionItems.add(new PermissionItem(Manifest.permission.RECORD_AUDIO, "录音", R.drawable.permission_ic_storage));
-//		permissionItems.add(new PermissionItem(Manifest.permission.WRITE_SETTINGS, "设置", R.drawable.permission_ic_storage));
-		HiPermission.create(this)
-				.permissions(permissionItems)
-				.checkMutiPermission(new PermissionCallback() {
-					@Override
-					public void onClose() {
-						Log.i(TAG, "onClose");
-						ToastUtils.showShort(MainTabActivity.this, "用户关闭权限申请");
-//						versionUpdate();
-					}
-
-					@Override
-					public void onFinish() {
-//						versionUpdate();
-					}
-
-					@Override
-					public void onDeny(String permisson, int position) {
-						Log.i(TAG, "onDeny");
-					}
-
-					@Override
-					public void onGuarantee(String permisson, int position) {
-						Log.i(TAG, "onGuarantee");
-					}
-				});
-	}
 
 	private void setNotify(){
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
