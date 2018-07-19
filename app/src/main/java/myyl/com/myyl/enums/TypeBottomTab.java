@@ -35,7 +35,10 @@ package myyl.com.myyl.enums;
 
 
 import myyl.com.myyl.R;
+import myyl.com.myyl.activity.DiscoverActivity;
 import myyl.com.myyl.activity.MainActivity;
+import myyl.com.myyl.activity.MineActivity;
+import myyl.com.myyl.activity.WorkActivity;
 
 /**********************************************************
  * *
@@ -45,11 +48,10 @@ import myyl.com.myyl.activity.MainActivity;
 
 public enum TypeBottomTab {
 
-//    Tab1("商博士首页", "Spec_Main", R.drawable.ic_tab_a, MainActivity.class),
     Tab1("首页", "Spec_Main", R.drawable.ic_tab_a, MainActivity.class),
-//    Tab2("收款", "Spec_Main2", R.drawable.ic_tab_b, ReceiptActivity.class),
-//    Tab3("商城", "Spec_Main3", R.drawable.ic_tab_c, ShopStroeActivity.class),
-//    Tab4("我的", "Spec_Main4", R.drawable.ic_tab_d, MineActivity.class),
+    Tab2("工作台", "Spec_Main2", R.drawable.ic_tab_b, WorkActivity.class),
+    Tab3("发现", "Spec_Main3", R.drawable.ic_tab_c, DiscoverActivity.class),
+    Tab4("我的", "Spec_Main4", R.drawable.ic_tab_d, MineActivity.class),
     ;
 
     private String tabName;

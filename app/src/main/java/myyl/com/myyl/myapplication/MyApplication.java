@@ -8,11 +8,15 @@ import android.support.multidex.MultiDex;
 
 import com.mob.MobSDK;
 
+import myyl.com.myyl.utils.SharedUtil;
+
+
 public class MyApplication extends Application {
 
     public static final String TAG = "MyApplication";
 
     private static MyApplication mInstance = null;
+    public static SharedUtil shareUtil;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -25,6 +29,9 @@ public class MyApplication extends Application {
         super.onCreate();
 
         MobSDK.init(this);
+        shareUtil = new SharedUtil(this);
+
+
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {

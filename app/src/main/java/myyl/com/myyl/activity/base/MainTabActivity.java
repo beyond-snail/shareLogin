@@ -51,12 +51,12 @@ public class MainTabActivity extends TabActivity implements OnTabChangeListener
 
 		setContentView(R.layout.basic_tab);
 		MyActivityManager.getInstance().addActivity(this);
-		StatusBarUtil.setColor(this, getResources().getColor(R.color.statusBar), 0);
+		StatusBarUtil.setColor(this, getResources().getColor(R.color.translucent_60), 112);
 
 		
 		initView();
 		setNotify();
-		requestPermissions();
+//		requestPermissions();
 	}
 
 

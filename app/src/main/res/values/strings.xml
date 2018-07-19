@@ -4,4 +4,26 @@
     <string name="str_recorder_normal">按住说话</string>
     <string name="str_recorder_recording">松开结束</string>
     <string name="str_recorder_want_cancel">松开手指，取消发送</string>
+
+    <string name="scan_tips">将二维码图片对准扫描框即可自动扫描</string>
+    <string name="parse_data_failed">数据解析失败</string>
+    <string name="network_info">无法连接到网络</string>
+    <string name="load_data_failed">请求数据失败</string>
+    <string name="loading_data">加载数据&#8230;&#8230;&#8230;&#8230;</string>
+    <string name="permission">权限(permission)</string>
+    <string name="no_permissions">应用需要必要的运行权限</string>
+
+    <string name="settings">设置</string>
+    <string name="help">帮助</string>
+    <string name="string_help_text">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。\n\n最后点击两次后退按钮，即可返回。</string>
+    <string name="quit">退出</string>
+
+    <string name="setting">设置</string>
+    <string name="perm_tip">
+        当前应用缺少必要权限。\n请点击"设置"-"权限"-打开所需权限。\n最后点击两次后退按钮，即可返回。
+    </string>
+    <string name="ask_again">请给予应用必要权限，让程序可正常工作。</string>
+    <string name="cancel">取消</string>
+    <string name="title_settings_dialog">所需的权限</string>
+    <string name="returned_from_app_settings_to_activity">从应用程序设置回到界面</string>
 </resources>
