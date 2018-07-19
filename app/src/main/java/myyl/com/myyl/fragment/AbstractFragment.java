@@ -12,24 +12,16 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import myyl.com.myyl.R;
 
@@ -449,10 +441,4 @@ public abstract class AbstractFragment extends Fragment {
 		return (LinearLayout) view.findViewById(id);
 	}
 
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 }
