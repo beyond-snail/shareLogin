@@ -26,4 +26,19 @@
     <string name="cancel">取消</string>
     <string name="title_settings_dialog">所需的权限</string>
     <string name="returned_from_app_settings_to_activity">从应用程序设置回到界面</string>
+
+
+    <string name="record_txt1">确认后你们可以自由沟通</string>
+    <string name="record_txt2">录音时长在60~360秒之间</string>
+    <string name="record_txt3">按住开始说话</string>
+    <string name="record_txt4">语音将在满</string>
+    <string name="record_txt5">s后自动发送哦</string>
+    <string name="record_success">录音完毕，正在发送...</string>
+    <string name="record_normal">按住开始说话</string>
+    <string name="record_ing">正在录音</string>
+    <string name="record_want_to_cancel">松开取消</string>
+    <string name="record_too_short">录音时间过短</string>
+    <string name="record_error">录音发送失败，请重试</string>
+
+    <string name="record_enougth">可以松手了</string>
 </resources>

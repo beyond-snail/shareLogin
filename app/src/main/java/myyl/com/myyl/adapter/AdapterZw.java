@@ -34,14 +34,11 @@ package myyl.com.myyl.adapter;
 ////////////////////////////////////////////////////////////////////
 
 import android.content.Context;
-import android.graphics.drawable.AnimationDrawable;
-import android.media.MediaPlayer;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.allen.library.SuperButton;
@@ -51,11 +48,8 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import java.util.List;
 
 import myyl.com.myyl.R;
-import myyl.com.myyl.model.MyFmInfo;
+import myyl.com.myyl.activity.ActivityAnswer;
 import myyl.com.myyl.model.MyZwInfo;
-import myyl.com.myyl.utils.StringUtils;
-import myyl.com.myyl.utils.records.MediaManager;
-import myyl.com.myyl.utils.records.view.AudioRecorderButton;
 import myyl.com.myyl.utils.views.RTextView;
 
 
@@ -123,6 +117,12 @@ public class AdapterZw extends BaseAdapter {
         holder.tv_p_name.setText(vo.getpName());
         holder.tv_hours.setText("还剩"+vo.getHours()+"小时");
         holder.tv_num.setText(vo.getNum()+"人已抢答");
+        holder.tv_qd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, ActivityAnswer.class));
+            }
+        });
 
 
 

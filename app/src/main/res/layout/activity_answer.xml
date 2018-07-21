@@ -1,0 +1,156 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:stv="http://schemas.android.com/apk/res-auto"
+    xmlns:rtv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/ly_header" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f5f5f5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_marginTop="20dp"
+
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="文字"
+            android:textColor="#333333"
+            android:textSize="14sp"/>
+        <EditText
+            android:id="@+id/et_text"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:enabled="true"
+            android:gravity="top"
+            android:hint=""
+            android:maxLength="500"
+            android:maxLines="20"
+            android:minLines="8"
+            android:scrollbars="vertical"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#f5f5f5" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+
+        <ImageView
+            android:id="@+id/wave1"
+            android:layout_width="@dimen/wave_size"
+            android:layout_height="@dimen/wave_size"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/wave" />
+
+        <ImageView
+            android:id="@+id/wave2"
+            android:layout_width="@dimen/wave_size"
+            android:layout_height="@dimen/wave_size"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/wave" />
+
+        <ImageView
+            android:id="@+id/wave3"
+            android:layout_width="@dimen/wave_size"
+            android:layout_height="@dimen/wave_size"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/wave" />
+
+        <myyl.com.myyl.utils.views.recordButton.RecorderButton
+            android:id="@+id/btn_record"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:background="@mipmap/ic_record"
+            app:bg_normal="@mipmap/ic_record"
+            app:bg_recording="@mipmap/ic_record"
+            app:bg_want_cancel="@mipmap/ic_record"
+            app:max_record_time="360"
+            app:max_voice_level="150"
+            app:min_record_time="10"
+            app:txt_normal=""
+            app:txt_recording=""
+            app:txt_want_cancel="" />
+
+        <myyl.com.myyl.utils.views.recordButton.HorVoiceView
+            android:id="@+id/hv_voice"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_above="@id/btn_record"
+            android:layout_marginTop="45dp"
+            app:voiceLineColor="@color/horvoice_line_color"
+            app:voiceTextColor="@color/horvoice_text_color" />
+
+        <TextView
+            android:id="@+id/tv_txt2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/record_txt2"
+            android:textColor="@color/record_txt_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_record"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/record_txt3"
+            android:textColor="@color/record_txt_color"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_state"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/record_txt4"
+            android:textColor="@color/record_txt_color2"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <com.allen.library.SuperButton
+        android:id="@+id/tv_fb"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="发布"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="@drawable/font_red_selector5"
+        stv:sSolidColor="@color/font_yl"
+        stv:sSelectorNormalColor="@color/font_yl"
+        stv:sSelectorPressedColor="@color/darkturquoise"
+        stv:sUseSelector="true"/>
+
+
+</LinearLayout>

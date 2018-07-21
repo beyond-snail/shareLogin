@@ -138,4 +138,8 @@
     <dimen name="layout_height_37">37dp</dimen>
     <dimen name="layout_height_35">35dp</dimen>
     <dimen name="layout_height_30">30dp</dimen>
+
+
+
+    <dimen name="wave_size">100dp</dimen>
 </resources>

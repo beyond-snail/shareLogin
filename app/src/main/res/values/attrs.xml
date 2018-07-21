@@ -154,4 +154,28 @@
         <attr name="enableSelectRating" format="boolean" />
         <attr name="onlyHalfStar" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="RecorderButton">
+        <attr name="txt_normal" format="string"/>
+        <attr name="txt_recording" format="string"/>
+        <attr name="txt_want_cancel" format="string"/>
+
+        <attr name="bg_normal" format="reference"/>
+        <attr name="bg_recording" format="reference"/>
+        <attr name="bg_want_cancel" format="reference"/>
+
+        <attr name="min_record_time" format="float"/>
+        <attr name="max_record_time" format="float"/>
+
+        <attr name="max_voice_level" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="HorVoiceView">
+        <attr name="voiceLineColor" format="color"/>
+        <attr name="voiceLineWidth" format="dimension"/>
+        <attr name="voiceLineHeight" format="dimension"/>
+        <attr name="voiceLineMaxHeight" format="dimension"/>
+        <attr name="voiceTextColor" format="color"/>
+        <attr name="voiceTextSize" format="dimension"/>
+    </declare-styleable>
 </resources>
