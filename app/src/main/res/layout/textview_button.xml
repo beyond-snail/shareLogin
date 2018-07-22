@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rtv="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content">
+
+    <myyl.com.myyl.utils.views.RTextView
+        android:id="@+id/tv_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:background="@drawable/background_with_bottom"
+        android:text="55"
+        android:textColor="#666666"
+        android:textSize="12sp"
+        rtv:icon_src_normal="@mipmap/ic_ej"
+        rtv:icon_direction="right"
+        rtv:icon_height="15dp"
+        rtv:icon_width="15dp"/>
+</LinearLayout>

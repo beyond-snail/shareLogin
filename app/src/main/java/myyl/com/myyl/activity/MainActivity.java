@@ -279,8 +279,10 @@ public class MainActivity extends BaseFragmentActivity {
                     case 4:
                         break;
                     case 5:
+                        startActivity(new Intent(mContext, ActivityFmMore.class));
                         break;
                     case 6:
+                        startActivity(new Intent(mContext, ActivityZwMore.class));
                         break;
 
                 }
@@ -342,7 +344,7 @@ public class MainActivity extends BaseFragmentActivity {
         viewPager.setAdapter(mFragmentAdapter);
         //ViewPager设置默认当前的项
         viewPager.setCurrentItem(0);
-        viewPager.setOffscreenPageLimit(5);
+        viewPager.setOffscreenPageLimit(1);
     }
 
 
@@ -370,8 +372,10 @@ public class MainActivity extends BaseFragmentActivity {
             case R.id.j_more:
                 break;
             case R.id.f_more:
+                startActivity(new Intent(mContext, ActivityFmMore.class));
                 break;
             case R.id.z_more:
+                startActivity(new Intent(mContext, ActivityZwMore.class));
                 break;
         }
     }

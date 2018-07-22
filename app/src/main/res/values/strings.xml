@@ -41,4 +41,7 @@
     <string name="record_error">录音发送失败，请重试</string>
 
     <string name="record_enougth">可以松手了</string>
+
+
+    <string name="no_data">没有找到符合条件的房源</string>
 </resources>

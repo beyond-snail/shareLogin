@@ -7,6 +7,8 @@ public class MyZwInfo implements Serializable{
     private String userName;
     private String content;
     private String pName;
+    private String cate;
+    private int amount;
     private int num;
     private int hours;
 
@@ -57,5 +59,21 @@ public class MyZwInfo implements Serializable{
 
     public void setpName(String pName) {
         this.pName = pName;
+    }
+
+    public String getCate() {
+        return cate;
+    }
+
+    public void setCate(String cate) {
+        this.cate = cate;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

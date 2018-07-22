@@ -10,6 +10,7 @@ public class MyFmInfo implements Serializable{
     private int num;
     private int second;
     private int amount;
+    private String time;
     private String audioStr;
 
     public String getUserUrl() {
@@ -74,5 +75,13 @@ public class MyFmInfo implements Serializable{
 
     public void setAudioStr(String audioStr) {
         this.audioStr = audioStr;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
