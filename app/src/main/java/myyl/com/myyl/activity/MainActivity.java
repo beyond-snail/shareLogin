@@ -269,10 +269,12 @@ public class MainActivity extends BaseFragmentActivity {
                 int index = EnumConsts.MenuType.getCodeByName(list.get(position).getName());
                 switch (index) {
                     case 1:
-//                        startActivity(new Intent(mContext, ActivityBankCardList.class));
+
                         break;
                     case 2:
+                        startActivity(new Intent(mContext, ActivitySuffererManager.class));
                         break;
+
                     case 3:
 
                         break;
