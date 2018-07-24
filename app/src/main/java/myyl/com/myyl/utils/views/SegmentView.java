@@ -70,7 +70,7 @@ public class SegmentView extends LinearLayout {
 		        textView.setTextColor(csl);
 		    } catch (Exception e) {}
 		    textView.setGravity(Gravity.CENTER);
-		    textView.setPadding(3, 5, 3, 5);
+			textView.setPadding(3, 5, 3, 5);
 		    textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize);
 			
 		    if(i==0){

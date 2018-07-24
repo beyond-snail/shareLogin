@@ -73,14 +73,15 @@
     
     <ImageView
         android:id="@+id/img_header_right"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="10dp"
         android:scaleType="fitXY"
         android:gravity="right"
+        android:src="@mipmap/ic_more"
         android:contentDescription="@null"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
 </RelativeLayout>

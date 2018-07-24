@@ -5,8 +5,10 @@ import android.os.Handler;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.allen.library.SuperButton;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
@@ -21,16 +23,17 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import myyl.com.myyl.R;
 import myyl.com.myyl.activity.base.BaseActivity;
-import myyl.com.myyl.adapter.AdapterDrugFind;
-import myyl.com.myyl.model.MyFindDrugs;
+import myyl.com.myyl.adapter.AdapterClinical;
+import myyl.com.myyl.model.MyClinicalInfo;
 import myyl.com.myyl.utils.MyActivityManager;
 import myyl.com.myyl.utils.views.MyListView;
+import myyl.com.myyl.utils.views.PopupWindowUtil;
 import myyl.com.myyl.utils.views.SegmentView;
 
-public class ActivityDrugs extends BaseActivity implements SegmentView.onSegmentViewClickListener {
+public class ActivityClinical extends BaseActivity implements SegmentView.onSegmentViewClickListener {
 
 
-    private static final String TAG = "ActivityConsultation";
+    private static final String TAG = "ActivityClinical";
     @BindView(R.id.titleback_btn_back)
     LinearLayout titlebackBtnBack;
     @BindView(R.id.segView)
@@ -43,12 +46,12 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
     PullToRefreshScrollView pullToRefreshScrollView;
     @BindView(R.id.tv_fb)
     SuperButton tvFb;
-    @BindView(R.id.tv_xy)
-    SuperButton tvXy;
+    @BindView(R.id.img_header_right)
+    ImageView imgHeaderRight;
 
 
-    private List<MyFindDrugs> myFindDrugs = new ArrayList<MyFindDrugs>();
-    private AdapterDrugFind adapterDrugFind;
+    private List<MyClinicalInfo> myClinicalInfos = new ArrayList<MyClinicalInfo>();
+    private AdapterClinical adapterClinical;
 
 
     private int page = 1;
@@ -59,7 +62,7 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        setContentView(R.layout.activity_find_drug);
+        setContentView(R.layout.activity_clinical);
         ButterKnife.bind(this);
         MyActivityManager.getInstance().addActivity(this);
         initView();
@@ -69,31 +72,32 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
     private void testData() {
 
         for (int i = 0; i < 3; i++) {
-            MyFindDrugs fmInfo = new MyFindDrugs();
+            MyClinicalInfo fmInfo = new MyClinicalInfo();
             fmInfo.setUserUrl("http://d.5857.com/xgs_150428/001.jpg");
             fmInfo.setUserName("测试" + i);
             fmInfo.setPersonCount(111);
             fmInfo.setDrugStr("PD1");
             fmInfo.setPercent(80);
-            myFindDrugs.add(fmInfo);
+            myClinicalInfos.add(fmInfo);
         }
-        adapterDrugFind.notifyDataSetChanged();
+        adapterClinical.notifyDataSetChanged();
 
 
     }
 
     private void initView() {
         showView(R.id.titleback_btn_back, true);
-        setTvText(R.id.tv_title, "找药");
-        showView(R.id.next_sure, false);
+        setTvText(R.id.tv_title, "我的临床");
+        imgHeaderRight.setVisibility(View.VISIBLE);
+        imgHeaderRight.setImageResource(R.mipmap.ic_more);
 
         segView.setOnSegmentViewClickListener(this);
-        segView.setTextValues(new String[]{"求药", "转让"});
+        segView.setTextValues(new String[]{"我的临床", "新药临床"});
 
 
         //刷新操作
-        adapterDrugFind = new AdapterDrugFind(mContext, myFindDrugs);
-        listview.setAdapter(adapterDrugFind);
+        adapterClinical = new AdapterClinical(mContext, myClinicalInfos);
+        listview.setAdapter(adapterClinical);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -101,8 +105,6 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
             }
         });
 
-
-//        pullToRefreshScrollView = findViewById(R.id.pull_refresh_scrollview);
         // 下拉刷新、上拉加载更多
         pullToRefreshScrollView.setMode(PullToRefreshBase.Mode.BOTH);
         // TODO:必须先设置Mode后再设置刷新文本
@@ -147,7 +149,7 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
                 refreshView.getLoadingLayoutProxy(false, true).setLastUpdatedLabel("更新于：" + label);
 
 
-                if (myFindDrugs.size() == 0) {
+                if (myClinicalInfos.size() == 0) {
                     handler.postDelayed(new Runnable() {
 
                         @Override
@@ -179,7 +181,7 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
     }
 
 
-    @OnClick({R.id.titleback_btn_back, R.id.tv_fb, R.id.tv_xy})
+    @OnClick({R.id.titleback_btn_back, R.id.tv_fb, R.id.img_header_right})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.titleback_btn_back:
@@ -187,13 +189,36 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
                 break;
             case R.id.tv_fb:
                 break;
-            case R.id.tv_xy:
+            case R.id.img_header_right:
+                testData2();
                 break;
         }
+    }
+
+    private void testData2() {
+        final List<String> items = new ArrayList<>();
+        items.add("第一项");
+        items.add("第二项");
+        items.add("第三项");
+        items.add("第四项");
+
+        final PopupWindowUtil popupWindow = new PopupWindowUtil(mContext, items);
+        popupWindow.setItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                popupWindow.dismiss();
+                Toast.makeText(mContext, "你点击了" + items.get(position), Toast.LENGTH_SHORT).show();
+            }
+        });
+        //根据后面的数据调节窗口的宽度
+        popupWindow.show(imgHeaderRight, 4);
     }
 
     @Override
     public void onSegmentViewClick(int index) {
 
     }
+
+
+
 }
