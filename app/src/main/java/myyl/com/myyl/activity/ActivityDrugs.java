@@ -1,6 +1,5 @@
 package myyl.com.myyl.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.DateUtils;
@@ -22,8 +21,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import myyl.com.myyl.R;
 import myyl.com.myyl.activity.base.BaseActivity;
-import myyl.com.myyl.adapter.AdapterConsultation;
-import myyl.com.myyl.model.MyConsultationInfo;
+import myyl.com.myyl.adapter.AdapterDrugFind;
+import myyl.com.myyl.model.MyFindDrugs;
 import myyl.com.myyl.utils.MyActivityManager;
 import myyl.com.myyl.utils.views.MyListView;
 import myyl.com.myyl.utils.views.SegmentView;
@@ -48,8 +47,8 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
     SuperButton tvXy;
 
 
-    private List<MyConsultationInfo> myConsultationInfos = new ArrayList<MyConsultationInfo>();
-    private AdapterConsultation adapterConsultation;
+    private List<MyFindDrugs> myFindDrugs = new ArrayList<MyFindDrugs>();
+    private AdapterDrugFind adapterDrugFind;
 
 
     private int page = 1;
@@ -70,15 +69,15 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
     private void testData() {
 
         for (int i = 0; i < 3; i++) {
-            MyConsultationInfo fmInfo = new MyConsultationInfo();
+            MyFindDrugs fmInfo = new MyFindDrugs();
             fmInfo.setUserUrl("http://d.5857.com/xgs_150428/001.jpg");
             fmInfo.setUserName("测试" + i);
-            fmInfo.setContent("等级是否就开始福建省了福建省了房间乱收费上课了的飞机上课的房间看电视放假了的书法家了第三方吉林省福建省的否打开司法局的书法家");
-            fmInfo.setAmount(1000);
-            fmInfo.setType("肿瘤科");
-            myConsultationInfos.add(fmInfo);
+            fmInfo.setPersonCount(111);
+            fmInfo.setDrugStr("PD1");
+            fmInfo.setPercent(80);
+            myFindDrugs.add(fmInfo);
         }
-        adapterConsultation.notifyDataSetChanged();
+        adapterDrugFind.notifyDataSetChanged();
 
 
     }
@@ -94,17 +93,17 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
 
         //刷新操作
         listview = findViewById(R.id.listview);
-        adapterConsultation = new AdapterConsultation(mContext, myConsultationInfos);
-        listview.setAdapter(adapterConsultation);
+        adapterDrugFind = new AdapterDrugFind(mContext, myFindDrugs);
+        listview.setAdapter(adapterDrugFind);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(mContext, ActivityConsultationDetail.class));
+//                startActivity(new Intent(mContext, ActivityConsultationDetail.class));
             }
         });
 
 
-        pullToRefreshScrollView = findViewById(R.id.pull_refresh_scrollview);
+//        pullToRefreshScrollView = findViewById(R.id.pull_refresh_scrollview);
         // 下拉刷新、上拉加载更多
         pullToRefreshScrollView.setMode(PullToRefreshBase.Mode.BOTH);
         // TODO:必须先设置Mode后再设置刷新文本
@@ -149,7 +148,7 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
                 refreshView.getLoadingLayoutProxy(false, true).setLastUpdatedLabel("更新于：" + label);
 
 
-                if (myConsultationInfos.size() == 0) {
+                if (myFindDrugs.size() == 0) {
                     handler.postDelayed(new Runnable() {
 
                         @Override

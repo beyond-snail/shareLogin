@@ -19,8 +19,8 @@
         android:orientation="horizontal">
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_img"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:scaleType="fitXY"
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"
@@ -45,14 +45,37 @@
                 android:textColor="#000000"
                 android:textSize="16sp"/>
             <TextView
-                android:id="@+id/tv_des"
+                android:id="@+id/tv_drug"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="--"
+                android:layout_marginTop="5dp"
+                android:textSize="13sp"
+                android:textColor="#666666"/>
+            <TextView
+                android:id="@+id/tv_person_num"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="--"
                 android:textSize="13sp"
                 android:textColor="#666666"/>
 
         </LinearLayout>
+        <myyl.com.myyl.utils.views.RTextView
+            android:id="@+id/tv_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:text="--"
+            android:textColor="@color/font_yl"
+            android:textSize="14sp"
+            rtv:icon_src_normal="@mipmap/ic_dun"
+            rtv:icon_direction="left"
+            rtv:icon_height="20dp"
+            rtv:icon_width="20dp"/>
     </LinearLayout>
 
 

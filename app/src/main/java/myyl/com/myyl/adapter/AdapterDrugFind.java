@@ -34,23 +34,19 @@ package myyl.com.myyl.adapter;
 ////////////////////////////////////////////////////////////////////
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.allen.library.SuperButton;
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
 import myyl.com.myyl.R;
-import myyl.com.myyl.activity.ActivityAnswer;
 import myyl.com.myyl.model.MyFindDrugs;
-import myyl.com.myyl.model.MyZwInfo;
 import myyl.com.myyl.utils.views.RTextView;
 
 
@@ -93,14 +89,12 @@ public class AdapterDrugFind extends BaseAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = mInflater.inflate(R.layout.item_zw, parent, false);
+            convertView = mInflater.inflate(R.layout.item_find_drug, parent, false);
             holder.iv_img = (RoundedImageView)convertView.findViewById(R.id.iv_img);
-            holder.tv_name = (RTextView) convertView.findViewById(R.id.tv_name);
-            holder.tv_p_name = (RTextView) convertView.findViewById(R.id.tv_p_name);
-            holder.tv_content = (TextView) convertView.findViewById(R.id.tv_content);
-            holder.tv_qd = (SuperButton) convertView.findViewById(R.id.tv_qd);
-            holder.tv_hours = (TextView) convertView.findViewById(R.id.tv_hours);
-            holder.tv_num = (TextView) convertView.findViewById(R.id.tv_num);
+            holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
+            holder.tv_drug = (TextView) convertView.findViewById(R.id.tv_drug);
+            holder.tv_person_num = (TextView) convertView.findViewById(R.id.tv_person_num);
+            holder.tv_percent = (RTextView) convertView.findViewById(R.id.tv_percent);
             convertView.setTag(holder);
 
         } else {
@@ -114,7 +108,9 @@ public class AdapterDrugFind extends BaseAdapter {
                 .into((RoundedImageView)holder.iv_img);
 
         holder.tv_name.setText(vo.getUserName());
-
+        holder.tv_drug.setText("药物: "+vo.getDrugStr());
+        holder.tv_person_num.setText("已报名: "+vo.getPersonCount()+"");
+        holder.tv_percent.setText(vo.getPercent()+"%");
 
 
 
@@ -123,12 +119,10 @@ public class AdapterDrugFind extends BaseAdapter {
 
     private static final class ViewHolder {
         RoundedImageView iv_img;
-        RTextView tv_name;
-        TextView tv_content;
-        RTextView tv_p_name;
-        SuperButton tv_qd;
-        TextView tv_hours;
-        TextView tv_num;
+        TextView tv_name;
+        TextView tv_drug;
+        TextView tv_person_num;
+        RTextView tv_percent;
 
     }
 }

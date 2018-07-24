@@ -274,9 +274,8 @@ public class MainActivity extends BaseFragmentActivity {
                     case 2:
                         startActivity(new Intent(mContext, ActivitySuffererManager.class));
                         break;
-
                     case 3:
-//                        startActivity(new Intent(mContext, ActivitySuffererManager.class));
+                        startActivity(new Intent(mContext, ActivityDrugs.class));
                         break;
                     case 4:
 //                        startActivity(new Intent(mContext, ActivitySuffererManager.class));
