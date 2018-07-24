@@ -263,7 +263,7 @@ public class DropDownMenu extends LinearLayout {
                             popupMenuViews.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.dd_menu_in));
                             maskView.setVisibility(VISIBLE);
                             maskView.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.dd_mask_in));
-                            popupMenuViews.getChildAt(i % 2).setVisibility(View.VISIBLE);
+                            popupMenuViews.getChildAt(i).setVisibility(View.VISIBLE);
                         }
                     } else {
                         if (i > tabCount-menuDownItem-1) {
@@ -271,7 +271,7 @@ public class DropDownMenu extends LinearLayout {
                             popupMenuViews.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.dd_menu_in));
                             maskView.setVisibility(VISIBLE);
                             maskView.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.dd_mask_in));
-                            popupMenuViews.getChildAt(i % 2).setVisibility(View.VISIBLE);
+                            popupMenuViews.getChildAt(i).setVisibility(View.VISIBLE);
                         }
                     }
                     current_tab_position = i;
@@ -298,9 +298,8 @@ public class DropDownMenu extends LinearLayout {
                 if (i > tabCount-menuDownItem-1) {
                     ((TextView) tabMenuView.getChildAt(i)).setCompoundDrawablesWithIntrinsicBounds(null, null,
                             getResources().getDrawable(menuUnselectedIcon), null);
-                    popupMenuViews.getChildAt(i % 2).setVisibility(View.GONE);
                 }
-
+                popupMenuViews.getChildAt(i).setVisibility(View.GONE);
             }
         }
     }

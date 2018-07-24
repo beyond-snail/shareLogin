@@ -123,6 +123,8 @@
     <declare-styleable name="seg_attrs">
         <attr name="seg_text" format="string" />
         <attr name="mNum" format="integer" />
+        <attr name="seg_text_size" format="integer" />
+        <attr name="seg_text_height" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="FlikerProgressBar">

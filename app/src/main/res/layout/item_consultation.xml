@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rtv="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/setting_list_bg"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="5dp">
+
+
+
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/iv_img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/dip_small"
+        app:riv_mutate_background="true"
+        app:riv_oval="true"
+        app:riv_tile_mode="clamp"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="--"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_normal" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp">
+            <TextView
+                android:id="@+id/tv_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:text="--"
+                android:textSize="14sp"
+                android:textColor="#333333"/>
+            <TextView
+                android:id="@+id/tv_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/font_yl"
+                android:textSize="16sp"
+                android:text="--"/>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/font_zw_gray"
+            android:textSize="13sp"
+            android:lines="3"
+            android:text=""/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+            <myyl.com.myyl.utils.views.RTextView
+                android:id="@+id/tv_zx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:text="咨询"
+                android:textColor="@color/font_yl"
+                android:textSize="13sp"
+                rtv:icon_src_normal="@mipmap/ic_zx"
+                rtv:icon_direction="left"
+                rtv:icon_height="15dp"
+                rtv:icon_width="15dp"/>
+
+            <myyl.com.myyl.utils.views.RTextView
+                android:id="@+id/tv_by"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:text="包月咨询"
+                android:textColor="@color/font_yl"
+                android:textSize="13sp"
+                rtv:icon_src_normal="@mipmap/ic_vip"
+                rtv:icon_direction="left"
+                rtv:icon_height="15dp"
+                rtv:icon_width="15dp"/>
+
+            <myyl.com.myyl.utils.views.RTextView
+                android:id="@+id/tv_zzhz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:text="组织会诊"
+                android:textColor="@color/font_yl"
+                android:textSize="13sp"
+                rtv:icon_src_normal="@mipmap/ic_more_person"
+                rtv:icon_direction="left"
+                rtv:icon_height="15dp"
+                rtv:icon_width="15dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</LinearLayout>

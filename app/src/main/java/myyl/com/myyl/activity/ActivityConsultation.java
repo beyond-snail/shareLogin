@@ -24,19 +24,21 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import myyl.com.myyl.R;
 import myyl.com.myyl.activity.base.BaseActivity;
+import myyl.com.myyl.adapter.AdapterConsultation;
 import myyl.com.myyl.adapter.AdapterFmMoreList;
 import myyl.com.myyl.adapter.GirdDropDownAdapter;
 import myyl.com.myyl.adapter.ListDropDownAdapter;
+import myyl.com.myyl.model.MyConsultationInfo;
 import myyl.com.myyl.model.MyFmInfo;
 import myyl.com.myyl.utils.MyActivityManager;
 import myyl.com.myyl.utils.views.MyListView;
 import myyl.com.myyl.utils.views.drawdownMenu.DropDownMenu;
 import myyl.com.myyl.utils.views.drawdownMenu.PopNoListener;
 
-public class ActivityFmMore extends BaseActivity {
+public class ActivityConsultation extends BaseActivity {
 
 
-    private static final String TAG = "ActivityFmMore";
+    private static final String TAG = "ActivityConsultation";
     @BindView(R.id.titleback_btn_back)
     LinearLayout titlebackBtnBack;
     @BindView(R.id.dropDownMenu)
@@ -46,13 +48,13 @@ public class ActivityFmMore extends BaseActivity {
     private String citys[] = {"不限", "武汉", "北京", "上海", "成都", "广州", "深圳", "重庆", "天津", "西安", "南京", "杭州"};
     private String ages[] = {"不限", "18岁以下", "18-22岁", "23-26岁", "27-35岁", "35岁以上"};
 
-    private String headers[] = {"推荐", "评价最高", "癌肿", "价格"}; //
+    private String headers[] = {"综合排序", "医院", "科室"}; //
     private List<View> popupViews = new ArrayList<>();
 
     private GirdDropDownAdapter cityAdapter;
     private ListDropDownAdapter ageAdapter;
-    private List<MyFmInfo> myFmInfos = new ArrayList<MyFmInfo>();
-    private AdapterFmMoreList adapterFmMoreList;
+    private List<MyConsultationInfo> myConsultationInfos = new ArrayList<MyConsultationInfo>();
+    private AdapterConsultation adapterConsultation;
 
     private PullToRefreshScrollView mPullRefreshScrollView;
     private MyListView myListView;
@@ -66,7 +68,7 @@ public class ActivityFmMore extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        setContentView(R.layout.activity_fm_more);
+        setContentView(R.layout.activity_consulation);
         ButterKnife.bind(this);
         MyActivityManager.getInstance().addActivity(this);
         initView();
@@ -78,24 +80,22 @@ public class ActivityFmMore extends BaseActivity {
         myListView.setVisibility(View.VISIBLE);
         id_no_data.setVisibility(View.GONE);
         for (int i = 0; i < 3; i++) {
-            MyFmInfo fmInfo = new MyFmInfo();
+            MyConsultationInfo fmInfo = new MyConsultationInfo();
             fmInfo.setUserUrl("http://d.5857.com/xgs_150428/001.jpg");
             fmInfo.setUserName("测试" + i);
             fmInfo.setContent("等级是否就开始福建省了福建省了房间乱收费上课了的飞机上课的房间看电视放假了的书法家了第三方吉林省福建省的否打开司法局的书法家");
-            fmInfo.setNum(12);
-            fmInfo.setSecond(122);
             fmInfo.setAmount(1000);
-            fmInfo.setTime("4天前");
-            myFmInfos.add(fmInfo);
+            fmInfo.setType("肿瘤科");
+            myConsultationInfos.add(fmInfo);
         }
-        adapterFmMoreList.notifyDataSetChanged();
+        adapterConsultation.notifyDataSetChanged();
 
 
     }
 
     private void initView() {
         showView(R.id.titleback_btn_back, true);
-        setTvText(R.id.tv_title, "我的FM");
+        setTvText(R.id.tv_title, "会诊");
         showView(R.id.next_sure, false);
 
 
@@ -117,7 +117,7 @@ public class ActivityFmMore extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 cityAdapter.setCheckItem(position);
-                dropDownMenu.setTabText(position == 0 ? headers[0] : citys[position]);
+                dropDownMenu.setTabText(position == 0 ? headers[1] : citys[position]);
                 dropDownMenu.closeMenu();
             }
         });
@@ -126,14 +126,13 @@ public class ActivityFmMore extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ageAdapter.setCheckItem(position);
-                dropDownMenu.setTabText(position == 0 ? headers[1] : ages[position]);
+                dropDownMenu.setTabText(position == 0 ? headers[2] : ages[position]);
                 dropDownMenu.closeMenu();
             }
         });
 
 
         //init popupViews
-        popupViews.add(new View(this));
         popupViews.add(new View(this));
         popupViews.add(cityView);
         popupViews.add(ageView);
@@ -160,12 +159,12 @@ public class ActivityFmMore extends BaseActivity {
 
         //刷新操作
         myListView = findViewById(R.id.listview);
-        adapterFmMoreList = new AdapterFmMoreList(mContext, myFmInfos);
-        myListView.setAdapter(adapterFmMoreList);
+        adapterConsultation = new AdapterConsultation(mContext, myConsultationInfos);
+        myListView.setAdapter(adapterConsultation);
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(mContext, ActivityFmDetail.class));
+                startActivity(new Intent(mContext, ActivityConsultationDetail.class));
             }
         });
 
@@ -215,7 +214,7 @@ public class ActivityFmMore extends BaseActivity {
                 refreshView.getLoadingLayoutProxy(false, true).setLastUpdatedLabel("更新于：" + label);
 
 
-                if (myFmInfos.size() == 0) {
+                if (myConsultationInfos.size() == 0) {
                     handler.postDelayed(new Runnable() {
 
                         @Override

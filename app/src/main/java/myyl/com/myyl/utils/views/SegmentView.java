@@ -22,6 +22,8 @@ import myyl.com.myyl.R;
 public class SegmentView extends LinearLayout {
 
 	public int mNum = 0;
+	private int textSize = 0;
+	private int textHeight = 0;
 	//当前选中索引
 	public int index = 0;
 	
@@ -37,6 +39,8 @@ public class SegmentView extends LinearLayout {
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.seg_attrs);
 		//String text = ta.getString(R.styleable.test_testAttr);
 		mNum = ta.getInteger(R.styleable.seg_attrs_mNum, 0);
+		textSize = ta.getInteger(R.styleable.seg_attrs_seg_text_size, 12);
+		textHeight = ta.getInteger(R.styleable.seg_attrs_seg_text_height, 35);
 		init();
 	}
 	
@@ -53,11 +57,11 @@ public class SegmentView extends LinearLayout {
 	
 	@SuppressWarnings("ResourceType")
 	private void init() {
-		this.setLayoutParams(new LayoutParams(dp2Px(getContext(), 50), LayoutParams.WRAP_CONTENT));
+		this.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		this.removeAllViews();
 		for(int i=0;i<mNum;i++){
 			TextView textView = new TextView(getContext());
-			textView.setLayoutParams(new LayoutParams(0, dp2Px(getContext(), 38), 1));
+			textView.setLayoutParams(new LayoutParams(0, dp2Px(getContext(), textHeight), 1));
 			textView.setTag(""+i);
 			textView.setText("SEG"+i);
 			XmlPullParser xrp = getResources().getXml(R.color.seg_text_color_selector);
@@ -67,7 +71,7 @@ public class SegmentView extends LinearLayout {
 		    } catch (Exception e) {}
 		    textView.setGravity(Gravity.CENTER);
 		    textView.setPadding(3, 5, 3, 5);
-		    textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
+		    textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize);
 			
 		    if(i==0){
 		    	textView.setBackgroundResource(R.drawable.seg_left);

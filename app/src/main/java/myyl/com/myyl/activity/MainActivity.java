@@ -269,16 +269,17 @@ public class MainActivity extends BaseFragmentActivity {
                 int index = EnumConsts.MenuType.getCodeByName(list.get(position).getName());
                 switch (index) {
                     case 1:
-
+                        startActivity(new Intent(mContext, ActivityConsultation.class));
                         break;
                     case 2:
                         startActivity(new Intent(mContext, ActivitySuffererManager.class));
                         break;
 
                     case 3:
-
+//                        startActivity(new Intent(mContext, ActivitySuffererManager.class));
                         break;
                     case 4:
+//                        startActivity(new Intent(mContext, ActivitySuffererManager.class));
                         break;
                     case 5:
                         startActivity(new Intent(mContext, ActivityFmMore.class));
