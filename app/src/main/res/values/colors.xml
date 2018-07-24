@@ -180,6 +180,7 @@
     <color name="result_view">#b0000000</color>
     <color name="possible_result_points">#c0ffff00</color>
     <color name="color_666666">#666666</color><!-- 黑色 -->
+    <color name="color_bg_grey">#D7D7D7</color><!-- 黑色 -->
 
     <color name="status_text">#ffffffff</color>
     <color name="translucent_60">#44aaaaaa</color>
