@@ -134,7 +134,7 @@
                         app:cornerTextColor="@color/white"
                         app:hiddenCornerText="false"
                         app:hiddenCorner="false"
-                        app:cornerTextSize="11dp" />
+                        app:cornerTextSize="13dp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
