@@ -201,4 +201,17 @@
         <attr name="scaleItemCount" format="integer"/>
         <attr name="scaleWidth" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="CornerImageView">
+        <attr name="cornerText" format="string" />
+        <attr name="cornerTextSize" format="dimension" />
+        <attr name="cornerTop" format="dimension" />
+        <attr name="cornerRight" format="dimension" />
+        <attr name="cornerImageViewRadius" format="dimension" />
+        <attr name="hiddenCorner" format="boolean" />
+        <attr name="hiddenCornerText" format="boolean" />
+        <attr name="cornerBackground" format="reference|color" />
+        <attr name="cornerLoadColor" format="reference" />
+        <attr name="cornerTextColor" format="reference" />
+    </declare-styleable>
 </resources>

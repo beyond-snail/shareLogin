@@ -82,6 +82,6 @@
         android:gravity="right"
         android:src="@mipmap/ic_more"
         android:contentDescription="@null"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
 </RelativeLayout>

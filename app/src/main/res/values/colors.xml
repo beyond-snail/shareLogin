@@ -185,6 +185,7 @@
     <color name="status_text">#ffffffff</color>
     <color name="translucent_60">#44aaaaaa</color>
     <color name="font_yl">#1FBCD2</color>
+    <color name="font_org">#FF5400</color>
     <color name="font_green">#29998A</color>
     <color name="font_zw_gray">#8E8E8E</color>
     <color name="ratingstar">#FF4000</color>
