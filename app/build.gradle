@@ -52,23 +52,17 @@ MobSDK {
 android {
 
 
-//    signingConfigs {
-//        release {
-//            keyAlias 'androiddebugkey'
-//            keyPassword 'android'
-//            storePassword 'android'
-//            storeFile file('/Users/wucongpeng/Documents/work_space/gogo/JFK.jks')
-//        }
-//    }
-
     signingConfigs {
         release {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
             storePassword 'android'
-            storeFile file('G:/work_space/android-sign/JFK.jks')
+            storeFile file('/Users/wucongpeng/Documents/work_space/gogo/JFK.jks')
         }
     }
+
+//    si
+
 
 
 
@@ -148,7 +142,7 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
 //    compile 'me.weyye.hipermission:library:1.0.7'
     compile 'com.github.hackware1993:MagicIndicator:1.5.0'
-    compile 'com.github.codbking:PickTime:v1.0.1'
+//    compile 'com.github.codbking:PickTime:v1.0.1'
     compile 'com.allenliu.versionchecklib:library:2.0.5'
     implementation project(':permisionlibrary')
     implementation 'com.belerweb:pinyin4j:2.5.1'

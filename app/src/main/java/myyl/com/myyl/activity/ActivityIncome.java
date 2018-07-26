@@ -9,9 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.codbking.widget.DatePickDialog;
-import com.codbking.widget.OnSureLisener;
-import com.codbking.widget.bean.DateType;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
@@ -25,13 +22,16 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import myyl.com.myyl.R;
 import myyl.com.myyl.activity.base.BaseActivity;
-import myyl.com.myyl.adapter.AdapterDrugFind;
 import myyl.com.myyl.adapter.AdapterIncome;
 import myyl.com.myyl.model.IncomeItemInfo;
 import myyl.com.myyl.model.IncomeRecord;
-import myyl.com.myyl.model.MyFindDrugs;
 import myyl.com.myyl.utils.MyActivityManager;
+import myyl.com.myyl.utils.TimeUtil;
+import myyl.com.myyl.utils.ToastUtils;
 import myyl.com.myyl.utils.views.MyListView;
+import myyl.com.myyl.utils.views.pickTime.widget.DatePickDialog;
+import myyl.com.myyl.utils.views.pickTime.widget.OnSureLisener;
+import myyl.com.myyl.utils.views.pickTime.widget.bean.DateType;
 
 public class ActivityIncome extends BaseActivity {
 
@@ -194,7 +194,7 @@ public class ActivityIncome extends BaseActivity {
                 //设置标题
                 dialog.setTitle("选择时间");
                 //设置类型
-                dialog.setType(DateType.TYPE_ALL);
+                dialog.setType(DateType.TYPE_YM);
                 //设置消息体的显示格式，日期格式
                 dialog.setMessageFormat("yyyy-MM");
                 //设置选择回调
@@ -204,6 +204,7 @@ public class ActivityIncome extends BaseActivity {
                     @Override
                     public void onSure(Date date) {
 //                        tvDateChoose.setText(TimeUtil.getStringFromDate(date, "yyyy-MM-dd"));
+                        ToastUtils.showShort(mContext, TimeUtil.getStringFromDate(date, "yyyy-MM"));
                     }
                 });
                 dialog.show();
