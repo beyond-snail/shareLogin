@@ -52,16 +52,23 @@ MobSDK {
 android {
 
 
+//    signingConfigs {
+//        release {
+//            keyAlias 'androiddebugkey'
+//            keyPassword 'android'
+//            storePassword 'android'
+//            storeFile file('/Users/wucongpeng/Documents/work_space/gogo/JFK.jks')
+//        }
+//    }
+
     signingConfigs {
         release {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
             storePassword 'android'
-            storeFile file('/Users/wucongpeng/Documents/work_space/gogo/JFK.jks')
+            storeFile file('G:/work_space/android-sign/JFK.jks')
         }
     }
-
-//    si
 
 
 

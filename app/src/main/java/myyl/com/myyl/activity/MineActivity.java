@@ -101,6 +101,7 @@ public class MineActivity extends TabBasicActivity implements View.OnClickListen
                 startActivity(new Intent(mContext, ActivityZwMore.class));
                 break;
             case R.id.rl_my_ss:
+                startActivity(new Intent(mContext, ActivityShuoShuo.class));
                 break;
             case R.id.rl_my_bl:
                 break;
