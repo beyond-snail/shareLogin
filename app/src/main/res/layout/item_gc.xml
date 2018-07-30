@@ -99,18 +99,25 @@
         <View
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="1dp"
-            android:background="#ffffff" />
+            android:layout_height="1dp"/>
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:gravity="center">-->
+            <myyl.com.myyl.utils.views.likeview.LikeView
+                android:id="@+id/likeView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                app:like_canCancel="false"
+                app:like_hasFly="true"
+                app:like_iconSize="18dp"
+                app:like_textSize="12sp"/>
+        <!--</LinearLayout>-->
         
-        <myyl.com.myyl.utils.views.likeview.LikeView
-            android:id="@+id/likeView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            app:like_canCancel="true"
-            app:like_hasFly="true"
-            app:like_iconSize="18dp"
-            app:like_textSize="12sp"/>
+
 
     </LinearLayout>
 

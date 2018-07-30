@@ -1,33 +1,21 @@
 package myyl.com.myyl.fragment;
 
 
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
-import com.stx.xhb.xbanner.XBanner;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import myyl.com.myyl.R;
-import myyl.com.myyl.activity.MainActivity;
 import myyl.com.myyl.adapter.AdapterGc;
-import myyl.com.myyl.adapter.AdapterZx;
 import myyl.com.myyl.model.HomePageHdata;
 import myyl.com.myyl.model.MyGcInfo;
-import myyl.com.myyl.model.MyZxInfo;
 import myyl.com.myyl.utils.LogUtils;
 import myyl.com.myyl.utils.views.MyListView;
 import myyl.com.myyl.utils.views.ZQImageViewRoundOval;
@@ -42,7 +30,6 @@ public class FragmentDiscoverPage1 extends AbstractFragment {
     private static final String TAG = "FragmentDiscoverPage1";
     private TextView tvEdit;
     private MyListView listview;
-    private LinearLayout idNoData;
     private PullToRefreshScrollView pullToRefreshScrollView;
     private RecyclerView recyclerview;
 
@@ -59,7 +46,6 @@ public class FragmentDiscoverPage1 extends AbstractFragment {
         recyclerview = findViewById(R.id.recyclerview);
 
         tvEdit = findViewById(R.id.tv_edit);
-        idNoData = findViewById(R.id.id_no_data);
         pullToRefreshScrollView = findViewById(R.id.pullToRefreshScrollView);
 
 
@@ -133,7 +119,7 @@ public class FragmentDiscoverPage1 extends AbstractFragment {
 
     private void testData() {
         myGcInfos.clear();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 10; i++) {
             MyGcInfo zxInfo = new MyGcInfo();
             zxInfo.setUserUrl("http://d.5857.com/xgs_150428/001.jpg");
             zxInfo.setName("测试" + i);

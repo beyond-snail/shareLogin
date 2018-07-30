@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -24,19 +25,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import myyl.com.myyl.R;
 import myyl.com.myyl.activity.base.BaseFragmentActivity;
-import myyl.com.myyl.activity.base.TabBasicActivity;
 import myyl.com.myyl.adapter.FragmentAdapter;
 import myyl.com.myyl.fragment.FragmentDiscoverPage1;
 import myyl.com.myyl.fragment.FragmentDiscoverPage2;
-import myyl.com.myyl.fragment.FragmentHomePage1;
-import myyl.com.myyl.fragment.FragmentHomePage2;
-import myyl.com.myyl.fragment.FragmentHomePage3;
-import myyl.com.myyl.fragment.FragmentHomePage4;
-import myyl.com.myyl.fragment.FragmentHomePage5;
 import myyl.com.myyl.utils.MyActivityManager;
-import myyl.com.myyl.utils.views.MyViewPager;
 
-public class DiscoverActivity extends BaseFragmentActivity{
+public class DiscoverActivity extends BaseFragmentActivity {
 
 
     private static final String TAG = "DiscoverActivity";
@@ -46,7 +40,7 @@ public class DiscoverActivity extends BaseFragmentActivity{
     @BindView(R.id.magic_indicator)
     MagicIndicator magicIndicator;
     @BindView(R.id.view_pager)
-    MyViewPager viewPager;
+    ViewPager viewPager;
     private List<String> mDataList = Arrays.asList(CHANNELS);
 
     private List<Fragment> mFragmentList = new ArrayList<Fragment>();

@@ -47,7 +47,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import myyl.com.myyl.R;
-import myyl.com.myyl.model.MyCollect;
 import myyl.com.myyl.model.MyGcInfo;
 import myyl.com.myyl.utils.StringUtils;
 import myyl.com.myyl.utils.views.MyGridView;
@@ -117,6 +116,7 @@ public class AdapterGc extends BaseAdapter {
         holder.tv_time.setText(vo.getTime());
         holder.tv_content.setText(vo.getContent());
         holder.tv_comment.setText(vo.getCommentCount()+"条评论");
+        holder.likeView.setLikeCount(vo.getLikeCount());
         holder.likeView.setOnLikeListeners(new LikeView.OnLikeListeners() {
             @Override
             public void like(boolean isCancel) {
