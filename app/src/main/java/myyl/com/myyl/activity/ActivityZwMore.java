@@ -47,6 +47,9 @@ public class ActivityZwMore extends BaseActivity {
 
     private String headers[] = {"未解答", "已解答"}; //
 
+
+    private List<View> popupViews = new ArrayList<>();
+
     private List<MyZwInfo> myZwInfos = new ArrayList<MyZwInfo>();
     private AdapterZwMoreList adapterZwMoreList;
 
@@ -121,8 +124,12 @@ public class ActivityZwMore extends BaseActivity {
         myListView = view.findViewById(R.id.listview);
         id_no_data = view.findViewById(R.id.id_no_data);
 
+
+        popupViews.add(new View(this));
+        popupViews.add(new View(this));
+
         //init dropdownview
-        dropDownMenu.setDropDownMenu(Arrays.asList(headers), null, view, new PopNoListener() {
+        dropDownMenu.setDropDownMenu(Arrays.asList(headers), popupViews, view, new PopNoListener() {
             @Override
             public void noPopCallback(int position) {
                 toast("当前选项: " + position);

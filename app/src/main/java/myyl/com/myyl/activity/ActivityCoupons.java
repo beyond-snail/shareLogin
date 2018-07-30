@@ -21,16 +21,18 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import myyl.com.myyl.R;
 import myyl.com.myyl.activity.base.BaseActivity;
+import myyl.com.myyl.adapter.AdapterCoupons;
 import myyl.com.myyl.adapter.AdapterDrugFind;
+import myyl.com.myyl.model.MyCoupons;
 import myyl.com.myyl.model.MyFindDrugs;
 import myyl.com.myyl.utils.MyActivityManager;
 import myyl.com.myyl.utils.views.MyListView;
 import myyl.com.myyl.utils.views.SegmentView;
 
-public class ActivityDrugs extends BaseActivity implements SegmentView.onSegmentViewClickListener {
+public class ActivityCoupons extends BaseActivity implements SegmentView.onSegmentViewClickListener {
 
 
-    private static final String TAG = "ActivityDrugs";
+    private static final String TAG = "ActivityCoupons";
     @BindView(R.id.titleback_btn_back)
     LinearLayout titlebackBtnBack;
     @BindView(R.id.segView)
@@ -41,14 +43,10 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
     LinearLayout idNoData;
     @BindView(R.id.pullToRefreshScrollView)
     PullToRefreshScrollView pullToRefreshScrollView;
-    @BindView(R.id.tv_fb)
-    SuperButton tvFb;
-    @BindView(R.id.tv_xy)
-    SuperButton tvXy;
 
 
-    private List<MyFindDrugs> myFindDrugs = new ArrayList<MyFindDrugs>();
-    private AdapterDrugFind adapterDrugFind;
+    private List<MyCoupons> myCoupons = new ArrayList<MyCoupons>();
+    private AdapterCoupons adapterCoupons;
 
 
     private int page = 1;
@@ -59,7 +57,7 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        setContentView(R.layout.activity_find_drug);
+        setContentView(R.layout.activity_coupons);
         ButterKnife.bind(this);
         MyActivityManager.getInstance().addActivity(this);
         initView();
@@ -69,31 +67,27 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
     private void testData() {
 
         for (int i = 0; i < 3; i++) {
-            MyFindDrugs fmInfo = new MyFindDrugs();
-            fmInfo.setUserUrl("http://d.5857.com/xgs_150428/001.jpg");
-            fmInfo.setUserName("测试" + i);
-            fmInfo.setPersonCount(111);
-            fmInfo.setDrugStr("PD1");
-            fmInfo.setPercent(80);
-            myFindDrugs.add(fmInfo);
+            MyCoupons coupons = new MyCoupons();
+            coupons.setUserUrl("http://d.5857.com/xgs_150428/001.jpg");
+            myCoupons.add(coupons);
         }
-        adapterDrugFind.notifyDataSetChanged();
+        adapterCoupons.notifyDataSetChanged();
 
 
     }
 
     private void initView() {
         showView(R.id.titleback_btn_back, true);
-        setTvText(R.id.tv_title, "找药");
+        setTvText(R.id.tv_title, "我的卡券");
         showView(R.id.next_sure, false);
 
         segView.setOnSegmentViewClickListener(this);
-        segView.setTextValues(new String[]{"求药", "转让"});
+        segView.setTextValues(new String[]{"未使用", "已使用"});
 
 
         //刷新操作
-        adapterDrugFind = new AdapterDrugFind(mContext, myFindDrugs);
-        listview.setAdapter(adapterDrugFind);
+        adapterCoupons = new AdapterCoupons(mContext, myCoupons);
+        listview.setAdapter(adapterCoupons);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -147,7 +141,7 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
                 refreshView.getLoadingLayoutProxy(false, true).setLastUpdatedLabel("更新于：" + label);
 
 
-                if (myFindDrugs.size() == 0) {
+                if (myCoupons.size() == 0) {
                     handler.postDelayed(new Runnable() {
 
                         @Override
@@ -179,15 +173,11 @@ public class ActivityDrugs extends BaseActivity implements SegmentView.onSegment
     }
 
 
-    @OnClick({R.id.titleback_btn_back, R.id.tv_fb, R.id.tv_xy})
+    @OnClick({R.id.titleback_btn_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.titleback_btn_back:
                 finish();
-                break;
-            case R.id.tv_fb:
-                break;
-            case R.id.tv_xy:
                 break;
         }
     }
