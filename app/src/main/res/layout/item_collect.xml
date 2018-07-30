@@ -62,20 +62,6 @@
                 android:textColor="#666666"/>
 
         </LinearLayout>
-        <myyl.com.myyl.utils.views.RTextView
-            android:id="@+id/tv_percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="5dp"
-            android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"
-            android:text="--"
-            android:textColor="@color/font_yl"
-            android:textSize="14sp"
-            rtv:icon_src_normal="@mipmap/ic_dun"
-            rtv:icon_direction="left"
-            rtv:icon_height="20dp"
-            rtv:icon_width="20dp"/>
     </LinearLayout>
 
 
